@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kepleriana 2026</title>
+  <meta name="description" content="Kepleriana 2026: die Geschichte der Kepler-Kommission, die digitale Ausgabe der Kepler Gesammelten Werke und die Münchner Faksimiles vom 14. März 2024.">
+  <meta name="author" content="Gerd Graßhoff">
+  <meta property="og:title" content="Kepleriana 2026">
+  <meta property="og:description" content="Geschichte der Kepler-Kommission, Kepler Gesammelte Werke und die Münchner Kepleriana.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,460;9..144,560;9..144,640&family=Source+Sans+3:ital,wght@0,400;0,560;0,650;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,560;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --oxford: #002147;
+      --oxford-deep: #00152e;
+      --ink: #1b2733;
+      --muted: #5c5348;
+      --gold: #c4a15a;
+      --gold-deep: #8c6d2a;
+      --sand: #f6f1e7;
+      --paper: #fffdf8;
+      --line: #e3d9c6;
+      --serif: "Source Serif 4", "Palatino Linotype", Palatino, serif;
+      --display: "Fraunces", "Source Serif 4", Palatino, serif;
+      --sans: "Source Sans 3", "Avenir Next", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 480px at 50% -180px, rgba(196, 161, 90, 0.16), transparent 60%),
+        var(--sand);
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+    a { color: var(--oxford); text-underline-offset: 0.18em; }
+    a:hover { color: var(--gold-deep); }
+    .skip {
+      position: absolute; left: 1rem; top: -4rem;
+      background: var(--oxford); color: #fff; padding: 0.4rem 0.7rem;
+    }
+    .skip:focus { top: 0.6rem; z-index: 5; }
+
+    .mast {
+      background: var(--oxford-deep);
+      color: #f4efe4;
+      border-bottom: 3px solid var(--gold);
+    }
+    .mast-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .brand {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 650;
+    }
+    .brand span { color: var(--gold); }
+    .mast nav { font-family: var(--sans); font-size: 0.92rem; }
+    .mast nav a {
+      color: #f4efe4;
+      text-decoration: none;
+      margin-left: 1.15rem;
+    }
+    .mast nav a:hover { color: var(--gold); }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .hero { padding: 3.4rem 0 1.6rem; }
+    .kicker {
+      margin: 0 0 0.7rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 650;
+    }
+    h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 560;
+      font-size: clamp(3.1rem, 8vw, 6.4rem);
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+      color: var(--oxford);
+    }
+    h1 em {
+      font-style: italic;
+      font-weight: 460;
+      color: var(--gold-deep);
+    }
+    .lead {
+      max-width: 40rem;
+      margin: 1.35rem 0 0;
+      font-size: 1.22rem;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .byline {
+      margin: 1.1rem 0 0;
+      max-width: 40rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .portals {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 1rem;
+      padding-bottom: 1rem;
+    }
+    .portal {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--oxford);
+      border-radius: 2px;
+      padding: 1.35rem 1.4rem 1.25rem;
+      box-shadow: 0 10px 28px rgba(0, 21, 46, 0.05);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .portal.lead-card { grid-row: span 2; }
+    .portal .mark {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 650;
+      margin: 0 0 0.45rem;
+    }
+    .portal h2 {
+      margin: 0 0 0.55rem;
+      font-family: var(--display);
+      font-weight: 560;
+      font-size: 1.85rem;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--oxford);
+    }
+    .portal p { margin: 0 0 0.85rem; }
+    .contents {
+      list-style: none;
+      margin: 0.2rem 0 1.1rem;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .contents li { border-bottom: 1px solid var(--line); }
+    .contents a {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0.55rem;
+      text-decoration: none;
+      padding: 0.42rem 0;
+      color: var(--ink);
+      font-size: 0.98rem;
+    }
+    .contents a:hover { color: var(--oxford); }
+    .contents .num {
+      font-family: var(--sans);
+      color: var(--gold-deep);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      flex: 0 0 auto;
+      padding-top: 0.2rem;
+    }
+    .go {
+      margin-top: auto;
+      align-self: flex-start;
+      display: inline-block;
+      background: var(--oxford);
+      color: #f7f1e4;
+      text-decoration: none;
+      font-family: var(--sans);
+      font-weight: 650;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      padding: 0.62rem 0.95rem;
+      border-radius: 2px;
+    }
+    .go:hover { background: #01315f; color: #fff; }
+    .go.quiet {
+      background: transparent;
+      color: var(--oxford);
+      border: 1px solid var(--oxford);
+      margin-left: 0.45rem;
+    }
+    .go.quiet:hover { background: var(--oxford); color: #fff; }
+
+    section.band { padding: 1.6rem 0 0.4rem; }
+    section.band h2 {
+      margin: 0 0 0.85rem;
+      font-family: var(--display);
+      font-weight: 560;
+      font-size: 1.7rem;
+      color: var(--oxford);
+      letter-spacing: -0.02em;
+    }
+    .section-lead {
+      margin: -0.35rem 0 1rem;
+      color: var(--muted);
+      max-width: 42rem;
+    }
+
+    .volumes {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.65rem;
+    }
+    .vol {
+      display: block;
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 0.85rem 0.75rem 0.8rem;
+      min-height: 8.2rem;
+      color: var(--ink);
+    }
+    .vol:hover { border-color: var(--oxford); color: var(--oxford); }
+    .vol .bn {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.55rem;
+      color: var(--oxford);
+      line-height: 1;
+      margin-bottom: 0.45rem;
+    }
+    .vol .bt {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.86rem;
+      line-height: 1.3;
+    }
+
+    .docs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .docs a {
+      display: grid;
+      grid-template-columns: 4.2rem 1fr auto;
+      gap: 0.7rem;
+      align-items: baseline;
+      text-decoration: none;
+      color: var(--ink);
+      border-top: 1px solid var(--line);
+      padding: 0.62rem 0;
+    }
+    .docs li:nth-last-child(-n+2) a,
+    .docs li:last-child a { border-bottom: 1px solid var(--line); }
+    .docs a:hover { color: var(--oxford); }
+    .docs .n {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--gold-deep);
+      font-weight: 650;
+    }
+    .docs .pages {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .more {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 1rem;
+      padding-bottom: 2.5rem;
+    }
+    .more a.tile {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 1.1rem 1.15rem 1rem;
+    }
+    .more a.tile:hover { border-color: var(--oxford); }
+    .more h3 {
+      margin: 0 0 0.35rem;
+      font-family: var(--display);
+      font-weight: 560;
+      font-size: 1.25rem;
+      color: var(--oxford);
+      line-height: 1.2;
+    }
+    .more p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+    .more .kind {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 650;
+      margin-bottom: 0.35rem;
+    }
+
+    footer {
+      background: var(--oxford-deep);
+      color: #d9d0c2;
+      padding: 1.6rem 0 1.8rem;
+      font-family: var(--sans);
+      font-size: 0.92rem;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    footer a { color: var(--gold); }
+    footer p { margin: 0.15rem 0; }
+
+    @media (max-width: 980px) {
+      .portals, .more, .volumes, .docs { grid-template-columns: 1fr 1fr; }
+      .portal.lead-card { grid-row: auto; }
+      .volumes { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .mast-inner { flex-direction: column; align-items: flex-start; }
+      .mast nav a { margin-left: 0; margin-right: 0.9rem; }
+      .portals, .more, .volumes, .docs { grid-template-columns: 1fr; }
+      .hero { padding-top: 2.2rem; }
+      .go.quiet { margin-left: 0; margin-top: 0.45rem; }
+      .docs a { grid-template-columns: 3.4rem 1fr; }
+      .docs .pages { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inhalt">Zum Inhalt</a>
+  <header class="mast">
+    <div class="mast-inner">
+      <p class="brand"><span>Kepleriana</span> 2026</p>
+      <nav aria-label="Abschnitte">
+        <a href="#geschichte">Geschichte</a>
+        <a href="#werke">Gesammelte Werke</a>
+        <a href="#muenchen">München 2024</a>
+        <a href="#weiter">Weiter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <div class="wrap">
+      <section class="hero">
+        <p class="kicker">Johannes Kepler · Edition und Nachlass</p>
+        <h1>Kepleriana <em>2026</em></h1>
+        <p class="lead">Die Geschichte der Kepler-Kommission, die digitale Ausgabe der Gesammelten Werke und die Faksimiles, die am 14. März 2024 in München aufgenommen wurden.</p>
+        <p class="byline">Gerd Graßhoff, Philosophisches Institut der Humboldt-Universität zu Berlin und Forschungsinstitut des Deutschen Museums. Die Geschichte der Kommission gemeinsam mit Kärin Nickelsen, Institut für Wissenschaftsgeschichte der LMU München.</p>
+      </section>
+
+      <section class="portals" aria-label="Die drei Hauptstücke">
+        <article class="portal lead-card" id="geschichte">
+          <p class="mark">Geschichte</p>
+          <h2>Die Geschichte der Kepler-Kommission</h2>
+          <p>Nachlass, Pulkowo und die Gesammelten Werke, mit einer Faksimile-Edition der Münchner Kepleriana von 1927 bis 1941. Nickelsen und Graßhoff, 27. September 2026.</p>
+          <ol class="contents">
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t1-vorbemerkungen"><span class="num">1</span><span>Vorbemerkungen</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-1-nachlass"><span class="num">2.1</span><span>Vorgeschichte des Nachlasses, 1630–1928</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-2-vorgeschichte-edition"><span class="num">2.2</span><span>Vorgeschichte der Edition, 1858–1928</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-3-kommissionsgruendung"><span class="num">2.3</span><span>Der Weg zur Kommissionsgründung</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-4-edition-bis-2017"><span class="num">2.4</span><span>Die Edition bis 2017</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-1-vergleich-euler"><span class="num">3.1</span><span>Petersburg und die Euler-Opera-omnia</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-2-zerstreuung"><span class="num">3.2</span><span>Die Zerstreuung der Handschriften</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-3-kepleriana"><span class="num">3.3</span><span>Die Münchner Kepleriana</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-4-ausblick-kgw-ai"><span class="num">3.4</span><span>Ausblick: KGW-ai</span></a></li>
+            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t4-faksimile"><span class="num">4</span><span>Editionsgrundsätze der Faksimiles</span></a></li>
+          </ol>
+          <p>
+            <a class="go" href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/geschichte-kepler-kommission">Notebook öffnen</a>
+            <a class="go quiet" href="the-long-way-to-a-collected-edition.pdf">Aufsatz als PDF</a>
+          </p>
+        </article>
+
+        <article class="portal" id="werke">
+          <p class="mark">PDAI-Viewer</p>
+          <h2>Kepler Gesammelte Werke</h2>
+          <p>Sechsundzwanzig Bände der Ausgabe, von <span lang="la">Mysterium cosmographicum</span> bis zum Register, mit der Sekundärliteratur daneben.</p>
+          <p><a class="go" href="https://lettre.ngrok.dev/kepler-gw/open">Ausgabe öffnen</a></p>
+        </article>
+
+        <article class="portal" id="muenchen">
+          <p class="mark">PDAI-Viewer</p>
+          <h2>Kepleriana München 2024</h2>
+          <p>Acht Dokumente, 102 Seiten, aufgenommen am 14. März 2024 an der Bayerischen Akademie der Wissenschaften: Kommissionsakten, Caspar-Korrespondenz und Reproduktionen zweier Keplerbriefe von 1630.</p>
+          <p><a class="go" href="https://lettre.ngrok.dev/kepleriana-munich-2024/open">Faksimiles öffnen</a></p>
+        </article>
+      </section>
+
+      <section class="band" aria-labelledby="baende">
+        <h2 id="baende">Bände zum Einstieg</h2>
+        <p class="section-lead">Sieben Bände der Gesammelten Werke im Viewer. Die ganze Ausgabe liegt hinter „Ausgabe öffnen“.</p>
+        <div class="volumes">
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-01"><span class="bn">1</span><span class="bt" lang="la">Mysterium cosmographicum. De Stella Nova</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-03"><span class="bn">3</span><span class="bt" lang="la">Astronomia nova</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-06"><span class="bn">6</span><span class="bt" lang="la">Harmonice mundi</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-07"><span class="bn">7</span><span class="bt" lang="la">Epitome astronomiae Copernicanae</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-10"><span class="bn">10</span><span class="bt" lang="la">Tabulae Rudolphinae</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-18"><span class="bn">18</span><span class="bt">Briefe 1620–1630</span></a>
+          <a class="vol" href="https://lettre.ngrok.dev/kepler-gw/kepler-prim/kgw-22"><span class="bn">22</span><span class="bt">Index und Register</span></a>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="dokumente">
+        <h2 id="dokumente">Die acht Münchner Dokumente</h2>
+        <p class="section-lead">Jedes Blatt öffnet sich im Faksimile-Viewer. Die Originale der Briefe an Philipp Müller liegen in Philadelphia; die Münchner Blätter sind Reproduktionen.</p>
+        <ol class="docs">
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-22"><span class="n">Dok. 1</span><span>Kepler-Drucke, Abschriften und Korrespondenzeingänge 1927–1933</span><span class="pages">16 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_12-16"><span class="n">Dok. 2</span><span>Korrespondenz Caspar, Ausgang 1935 und Eingang 1941; Kepler-Photostats</span><span class="pages">32 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-52"><span class="n">Dok. 3</span><span>Walther von Dyck an Max Caspar, München, 22. November 1932</span><span class="pages">2 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-53"><span class="n">Dok. 4</span><span>Register der Korrespondenzeingänge 1932–1935</span><span class="pages">19 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_12-01"><span class="n">Dok. 5</span><span>Korrespondenzeingänge 1935</span><span class="pages">27 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-17"><span class="n">Dok. 6</span><span>Kepler an Philipp Müller, Sagan, 16./26. Januar 1630</span><span class="pages">2 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-18"><span class="n">Dok. 7</span><span>Begleitblätter zu KGW 18, Nr. 1122</span><span class="pages">3 Seiten</span></a></li>
+          <li><a href="https://lettre.ngrok.dev/kepleriana-munich-2024/kepleriana-munich-2024/2024-03-14_11-21"><span class="n">Dok. 8</span><span>Begleitblatt zu KGW 18, Nr. 1120</span><span class="pages">1 Seite</span></a></li>
+        </ol>
+      </section>
+
+      <section class="band" id="weiter" aria-labelledby="weitere">
+        <h2 id="weitere">Daneben</h2>
+        <div class="more">
+          <a class="tile" href="the-long-way-to-a-collected-edition.pdf">
+            <p class="kind">Aufsatz · 6 Seiten</p>
+            <h3>The Long Way to a Collected Edition</h3>
+            <p>Kepler’s dispersed Nachlass and the founding of the Gesammelte Werke, 1630–1934. Gerd Graßhoff.</p>
+          </a>
+          <a class="tile" href="https://lettre.ngrok.dev/famulus-notebook/notebook?nb=kepler-lex-naturae/lex-naturae">
+            <p class="kind">Notebook</p>
+            <h3>lex und natura</h3>
+            <p>Lateinische Sätze der Gesammelten Werke, in denen <span lang="la">lex</span> und <span lang="la">natura</span> zusammenstehen.</p>
+          </a>
+          <a class="tile" href="https://lettre.ngrok.dev/famulus-notebook/notebook?nb=kepler-anima-vis/anima-vis">
+            <p class="kind">Notebook</p>
+            <h3>anima motrix, vis motrix</h3>
+            <p>1596 bewegt eine <span lang="la">anima motrix</span> die Planeten. 1621 setzt Kepler <span lang="la">vis</span> an die Stelle von <span lang="la">anima</span>.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <p>Kepleriana 2026</p>
+        <p>Gerd Graßhoff · Humboldt-Universität zu Berlin</p>
+      </div>
+      <p><a href="https://lettre.ngrok.dev/editions/">Alle PDAI-Editionen</a></p>
+    </div>
+  </footer>
+</body>
+</html>
