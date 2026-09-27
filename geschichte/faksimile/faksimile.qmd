@@ -1,0 +1,18 @@
+---
+title: "Teil 4: Faksimile-Edition der Münchner Kepleriana"
+lang: de
+lektorat:
+  version: 2
+  termini: []
+  sprachregelungen:
+  - Transkription diplomatisch - Wortlaut, Schreibung und Zeichensetzung der Vorlage bleiben; keine Modernisierung, keine Glättung.
+  - Eine Korrektur gibt nur wieder, was auf dem Faksimile steht; unsichere Lesungen bleiben als <unclear>…</unclear> markiert.
+  - Die Quelle jedes Segments ist ein Element der Seiten-XML in kepleriana-munich-2024; übernommene Fassungen werden dort geschrieben.
+  stil: []
+  direktiven:
+    lwgrammar:
+      modes: []
+---
+
+Die Quelle dieses Dokuments sind die Seiten-XML der PDAI-Sammlung
+kepleriana-munich-2024; index.html und teil4.typ erzeugt build_edition.py.

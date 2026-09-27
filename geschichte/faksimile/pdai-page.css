@@ -1,0 +1,1076 @@
+/*
+ * pdai-page.css — LettreAI book edition stylesheet for schema-aware page rendering
+ *
+ * Direct integration of Famulus Repro's elevated book-sheet visual language:
+ *   - Palette: Oxford blue, warm gold accents, sandstone paper sheet elevation, deep charcoal ink
+ *   - Container: .page-sheet on warm sunken desk background (.text-panel / var(--paper-sunken))
+ *   - Edition bar: .repro-edition-bar with document title, page label, metadata pill, and [Formatiert | XML-Quelltext] toggle
+ *   - Running head: header.repro-book-header with letterspaced uppercase title and golden folio
+ *   - Typography: serif book text (Iowan Old Style / Palatino / Georgia), justified, hanging parno
+ *   - Frontispiece: elegant title page styling for titles, authors, motto poems, and colophons
+ *   - Figures: .repro-figure with golden framing, elevation shadow, and styled captions
+ *   - Apparatus: marginal notes, linked footnotes with golden numerals, epistolary cards
+ *   - Code: syntax-highlighted raw XML source inspector (.code-wrapper)
+ */
+
+:root {
+  --oxford: #002147;
+  --oxford-soft: #14213d;
+  --gold: #c8a22a;
+  --gold-pale: #fbf5e6;
+  --gold-border: #d4b85c;
+  --paper: #faf8f3;
+  --paper-sunken: #f2ede2;
+  --paper-sheet: #fffdf9;
+  --ink: #1a1a2e;
+  --ink-muted: #4a4a6a;
+  --ink-faint: #7a7a9a;
+  --rule: #e0d8c4;
+  --rule-gold: #c8b560;
+  --serif: "Iowan Old Style", "Palatino", "Georgia", "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "SF Mono", Monaco, Menlo, Consolas, ui-monospace, monospace;
+
+  /* XML syntax highlighting */
+  --xml-bg: #faf7f0;
+  --xml-code-bg: #ffffff;
+  --xml-header-bg: #f2ece0;
+  --xml-border: #ddd6c4;
+  --xml-gutter-color: #9a958a;
+  --xml-gutter-bg: #f9f5ed;
+  --xml-text: #1d1d1b;
+  --xml-tag: #0a4d8c;
+  --xml-attr: #966b16;
+  --xml-val: #2b7a3e;
+  --xml-bracket: #606875;
+  --xml-com: #7f8894;
+  --xml-pi: #b8860b;
+}
+
+/* ── Viewer Text Panel Background Integration ──────────────────────────── */
+
+.text-panel {
+  background: var(--paper-sunken) !important;
+}
+
+.text-panel .text-content {
+  max-width: 820px !important;
+  margin: 0 auto !important;
+  padding: 14px 12px 48px !important;
+  background: transparent !important;
+}
+
+/* ── Top Edition Bar (Famulus Repro style) ───────────────────────────────── */
+
+.repro-edition-bar,
+.pdai-edition-bar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 740px !important;
+  margin: 0 auto 12px !important;
+  padding: 0 4px !important;
+  font-family: var(--sans) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em !important;
+  color: var(--ink-faint) !important;
+  text-transform: uppercase !important;
+}
+
+.repro-edition-bar .edition-title,
+.pdai-edition-bar .edition-title {
+  font-weight: 600 !important;
+  color: var(--oxford) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.04em !important;
+}
+
+.repro-edition-bar .edition-meta,
+.pdai-edition-bar .edition-meta {
+  font-family: var(--mono) !important;
+  font-size: 10px !important;
+  color: var(--gold) !important;
+  background: var(--gold-pale) !important;
+  padding: 2px 9px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--gold-border) !important;
+  white-space: nowrap !important;
+  font-weight: 600 !important;
+}
+
+.repro-edition-bar .view-toggle,
+.pdai-edition-bar .view-toggle {
+  display: inline-flex !important;
+  gap: 3px !important;
+  background: rgba(0, 33, 71, 0.08) !important;
+  padding: 2px 3px !important;
+  border-radius: 5px !important;
+  margin-left: 10px !important;
+}
+
+.repro-edition-bar .view-toggle button,
+.pdai-edition-bar .view-toggle button {
+  border: none !important;
+  background: transparent !important;
+  font-family: var(--sans) !important;
+  font-size: 10.5px !important;
+  padding: 3px 8px !important;
+  border-radius: 3px !important;
+  cursor: pointer !important;
+  color: var(--ink-muted) !important;
+  transition: all 0.15s ease !important;
+}
+
+.repro-edition-bar .view-toggle button.active,
+.pdai-edition-bar .view-toggle button.active {
+  background: #ffffff !important;
+  color: var(--oxford) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ── Elevated Book Sheet (.page-sheet / .pdai-page-structured) ──────────── */
+
+.page-sheet,
+.pdai-page-structured {
+  max-width: 740px !important;
+  margin: 8px auto 36px !important;
+  background: var(--paper-sheet) !important;
+  padding: 36px 32px 48px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid var(--rule) !important;
+  color: var(--ink) !important;
+  font-family: var(--serif) !important;
+  font-size: 15px !important;
+  line-height: 1.72 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-text-size-adjust: 100% !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.page-sheet *,
+.pdai-page-structured * {
+  box-sizing: border-box;
+}
+
+/* ── Running head (header) ──────────────────────────────────────────────── */
+
+header.repro-book-header,
+.page-header,
+.pdai-page-structured [data-el="header"] {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  border-bottom: 1.5px solid var(--rule-gold) !important;
+  padding-bottom: 7px !important;
+  margin-bottom: 24px !important;
+}
+
+.repro-pagenum,
+.page-header-folio,
+.pdai-page-structured .page-header-folio {
+  font-family: var(--mono) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: var(--gold) !important;
+  letter-spacing: 0.02em !important;
+  font-variant-numeric: tabular-nums oldstyle-nums !important;
+  font-style: normal !important;
+}
+
+.repro-running,
+.page-header-title,
+.page-header-text,
+.pdai-page-structured .page-header-title {
+  font-family: var(--sans) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--oxford) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-style: normal !important;
+}
+
+.page-header-place {
+  font-family: var(--sans) !important;
+  font-size: 11px !important;
+  font-style: italic !important;
+  color: var(--ink-faint) !important;
+}
+
+/* ── Headings & Structural Titles ───────────────────────────────────────── */
+
+.repro-section,
+[data-el="section"],
+[data-el="caput"],
+[data-el="heading"] {
+  display: block;
+  margin: 1.4em 0 0.8em;
+  text-align: center;
+}
+
+.repro-section[data-l="1"],
+[data-el="section"][data-l="1"],
+.page-sheet h1 {
+  font-family: var(--sans) !important;
+  font-size: 1.35em !important;
+  font-weight: 700 !important;
+  color: var(--oxford) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  line-height: 1.3 !important;
+  margin: 1.8em 0 0.6em !important;
+  text-align: center !important;
+}
+
+.repro-section[data-l="2"],
+[data-el="section"][data-l="2"],
+[data-el="caput"],
+.page-sheet h2 {
+  font-family: var(--sans) !important;
+  font-size: 1.18em !important;
+  font-weight: 700 !important;
+  color: var(--oxford) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  line-height: 1.3 !important;
+  margin: 1.4em 0 0.5em !important;
+  text-align: center !important;
+}
+
+.repro-section[data-l="3"],
+[data-el="section"][data-l="3"],
+.page-sheet h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.1em !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  color: var(--oxford-soft) !important;
+  line-height: 1.3 !important;
+  margin: 1em 0 0.5em !important;
+  text-align: center !important;
+}
+
+.repro-section[data-l="4"],
+[data-el="section"][data-l="4"],
+.page-sheet h4 {
+  font-family: var(--serif) !important;
+  font-size: 1em !important;
+  font-style: italic !important;
+  color: var(--ink-muted) !important;
+  margin: 0.8em 0 0.4em !important;
+  text-align: center !important;
+}
+
+/* ── Frontispiece Title Page Specials ───────────────────────────────────── */
+
+.page-sheet p.front-title,
+.pdai-page-structured p.front-title,
+.p-title, [data-style="title"] {
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  color: var(--oxford) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  margin: 2em 0 0.8em !important;
+  line-height: 1.35 !important;
+  font-family: var(--sans) !important;
+  text-indent: 0 !important;
+}
+
+.page-sheet p.front-author,
+.pdai-page-structured p.front-author,
+.p-author, [data-style="author"] {
+  font-size: 1.05rem !important;
+  text-align: center !important;
+  color: var(--ink) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  margin: 1.2em 0 1.6em !important;
+  font-family: var(--sans) !important;
+  line-height: 1.5 !important;
+  text-indent: 0 !important;
+}
+
+.page-sheet .front-poem,
+.pdai-page-structured .front-poem {
+  margin: 1.5rem 0.5rem !important;
+  padding: 1rem 1.2rem !important;
+  border-left: 3px solid var(--gold) !important;
+  background: var(--gold-pale) !important;
+  border-radius: 0 6px 6px 0 !important;
+  font-family: var(--serif) !important;
+  font-style: italic !important;
+  font-size: 1.02rem !important;
+  line-height: 1.75 !important;
+  color: var(--ink) !important;
+  text-align: center !important;
+}
+
+.page-sheet .front-poem p {
+  text-indent: 0 !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.page-sheet p.front-colophon,
+.pdai-page-structured p.front-colophon {
+  margin-top: 3.5rem !important;
+  padding-top: 1.2rem !important;
+  border-top: 1px solid var(--rule-gold) !important;
+  font-family: var(--sans) !important;
+  font-size: 0.85rem !important;
+  color: var(--ink-muted) !important;
+  text-align: center !important;
+  line-height: 1.55 !important;
+  text-indent: 0 !important;
+}
+
+/* ── Paragraphs & Indentation ───────────────────────────────────────────── */
+
+.page-sheet p,
+.pdai-page-structured p,
+.pdai-page-structured [data-el="p"] {
+  color: var(--ink) !important;
+  font-family: var(--serif) !important;
+  font-size: 15px !important;
+  line-height: 1.72 !important;
+  margin: 0 0 0.7em !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+}
+
+.page-sheet p[indent="yes"],
+.pdai-page-structured [data-el="p"][data-indent="yes"],
+.page-sheet p:not(.no-indent),
+.pdai-page-structured [data-el="p"]:not(.no-indent) {
+  text-indent: 1.5em !important;
+}
+
+.page-sheet p[indent="no"],
+.pdai-page-structured [data-el="p"][data-indent="no"],
+.page-sheet p.no-indent,
+.pdai-page-structured [data-el="p"].no-indent,
+.page-sheet h1 + p, .page-sheet h2 + p, .page-sheet h3 + p, .page-sheet h4 + p,
+.page-sheet .repro-section + p,
+.page-sheet .repro-figure + p,
+.page-sheet .repro-book-header + p,
+.page-sheet .repro-dateline + p {
+  text-indent: 0 !important;
+}
+
+.repro-dateline,
+[data-el="dateline"] {
+  font-style: italic !important;
+  color: var(--ink-muted) !important;
+  margin-bottom: 1em !important;
+  font-size: 0.94em !important;
+  text-indent: 0 !important;
+}
+
+/* ── Paragraph Numbering (<parno>) ──────────────────────────────────────── */
+
+.page-sheet .parno,
+.pdai-page-structured [data-el="parno"],
+.pdai-page-structured .parno {
+  font-family: var(--sans) !important;
+  font-size: 0.9em !important;
+  font-weight: 700 !important;
+  color: var(--gold) !important;
+  margin-right: 0.45em !important;
+  user-select: none !important;
+  letter-spacing: 0.02em !important;
+  font-style: normal !important;
+  cursor: pointer !important;
+}
+
+.page-sheet .parno:hover,
+.pdai-page-structured [data-el="parno"]:hover {
+  color: var(--oxford) !important;
+  text-decoration: underline !important;
+}
+
+/* ── Figures & Extracted Illustrations (Famulus Repro style) ─────────────── */
+
+.repro-figure,
+[data-el="figure"],
+figure.extracted-figure,
+.pdai-page-structured [data-el="figure"] {
+  display: block !important;
+  margin: 1.8rem auto !important;
+  padding: 1.25rem !important;
+  background: var(--gold-pale) !important;
+  border: 1px solid var(--gold-border) !important;
+  border-radius: 6px !important;
+  text-align: center !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.repro-figure img,
+[data-el="figure"] img,
+figure.extracted-figure img,
+.pdai-page-structured [data-el="figure"] img {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 520px !important;
+  height: auto !important;
+  margin: 0 auto 0.85rem !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+  object-fit: contain !important;
+}
+
+.repro-figure figcaption,
+[data-el="figure"] figcaption,
+figure.extracted-figure figcaption,
+.pdai-page-structured [data-el="figure"] figcaption {
+  font-family: var(--sans) !important;
+  font-size: 0.86em !important;
+  color: var(--ink-muted) !important;
+  font-style: italic !important;
+  margin-top: 0.6rem !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+.repro-fig-placeholder,
+.fig-missing-placeholder {
+  /* display controlled by inline style="display:none" initially;
+     onerror handler clears it — no !important here so inline style wins */
+  padding: 0.9rem 1.6rem !important;
+  font-style: italic !important;
+  color: var(--gold) !important;
+  font-size: 0.88em !important;
+  background: rgba(200, 162, 42, 0.12) !important;
+  border: 1px dashed var(--gold-border) !important;
+  border-radius: 4px !important;
+}
+
+/* ── Quotes & Citations ─────────────────────────────────────────────────── */
+
+blockquote,
+[data-el="quote"],
+.pdai-page-structured [data-el="quote"] {
+  margin: 1.1rem 2rem !important;
+  padding: 0.45rem 1.2rem !important;
+  border-left: 3px solid var(--gold) !important;
+  color: var(--ink-muted) !important;
+  font-style: italic !important;
+}
+
+cite,
+[data-el="cite"] {
+  display: block !important;
+  font-family: var(--sans) !important;
+  font-size: 0.82em !important;
+  font-weight: 600 !important;
+  color: var(--gold) !important;
+  margin-bottom: 0.3em !important;
+  font-style: normal !important;
+}
+
+/* ── Tables ─────────────────────────────────────────────────────────────── */
+
+table,
+table.pdai-table,
+[data-el="table"] {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.4em 0 !important;
+  font-family: var(--sans) !important;
+  font-size: 0.9em !important;
+  border: 1px solid var(--rule) !important;
+}
+
+th,
+[data-el="th"] {
+  background: var(--paper-sunken) !important;
+  color: var(--oxford) !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--rule) !important;
+  padding: 7px 11px !important;
+  text-align: left !important;
+}
+
+td,
+[data-el="td"] {
+  border: 1px solid var(--rule) !important;
+  padding: 6px 11px !important;
+  vertical-align: top !important;
+}
+
+tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.02) !important;
+}
+
+/* ── Inline Typographic Details ─────────────────────────────────────────── */
+
+em, i, [data-el="i"], [data-el="hi"][data-rend="italic"] {
+  font-style: italic !important;
+}
+
+strong, b, [data-el="b"], [data-el="hi"][data-rend="bold"] {
+  font-weight: 700 !important;
+}
+
+span.sc,
+span.small-caps,
+[data-el="sc"],
+[data-el="hi"][data-rend="smallcaps"] {
+  font-variant: small-caps !important;
+  letter-spacing: 0.05em !important;
+}
+
+sup, [data-el="fnref"], [data-el="hi"][data-rend="superscript"] {
+  font-size: 0.72em !important;
+  vertical-align: super !important;
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  margin-left: 1px !important;
+}
+
+sub, [data-el="hi"][data-rend="subscript"] {
+  font-size: 0.72em !important;
+  vertical-align: sub !important;
+}
+
+/* ── Marginalia ─────────────────────────────────────────────────────────── */
+
+.repro-marginalia,
+[data-el="marginal"],
+[data-el="marginalia"] {
+  font-size: 0.82em !important;
+  color: var(--ink-muted) !important;
+  font-style: italic !important;
+  margin: 0 0.35em !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+}
+
+.repro-marginalia.right,
+[data-el="marginal"][data-side="right"] {
+  text-align: right !important;
+}
+
+[data-el="marginal"][data-side="left"] {
+  text-align: left;
+}
+
+/* Marginal type variants */
+[data-el="marginal"][data-type="line-number"] {
+  font-family: var(--mono);
+  font-size: 0.74em;
+  color: var(--ink-faint);
+  font-style: normal;
+  background: none;
+  border-color: transparent;
+  padding-left: 0;
+}
+
+[data-el="marginal"][data-type="folio"] {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  font-weight: 700;
+  color: var(--gold);
+  background: none;
+}
+
+[data-el="marginal"][data-type="date"] {
+  color: var(--gold);
+  font-size: 0.8em;
+  font-style: normal;
+  font-weight: 600;
+}
+
+[data-el="marginal"][data-type="reference"] {
+  font-family: var(--sans);
+  font-size: 0.76em;
+  color: var(--oxford);
+  font-style: normal;
+  font-weight: 600;
+}
+
+[data-el="marginal"][data-type="topic"] {
+  font-family: var(--sans);
+  font-size: 0.74em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-faint);
+  font-style: normal;
+  background: none;
+  border-color: var(--rule);
+}
+
+/* ── Footnotes ──────────────────────────────────────────────────────────── */
+
+.repro-footnotes,
+[data-el="footnotes"],
+.pdai-page-structured [data-el="footnotes"] {
+  margin-top: 2.5rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--rule-gold) !important;
+  font-size: 0.85em !important;
+  color: var(--ink-muted) !important;
+}
+
+.repro-fn,
+[data-el="footnote"],
+[data-el="fn"] {
+  margin-bottom: 0.5em !important;
+  padding-left: 1.8em !important;
+  text-indent: -1.8em !important;
+  line-height: 1.5 !important;
+}
+
+.repro-fn-n {
+  font-weight: 700 !important;
+  color: var(--gold) !important;
+  margin-right: 0.4em !important;
+}
+
+/* ── Epistolary & Correspondence Structure ──────────────────────────────── */
+
+.letter-head,
+[data-el="letter-head"] {
+  background: var(--gold-pale) !important;
+  border: 1px solid var(--gold-border) !important;
+  border-radius: 6px !important;
+  padding: 14px 18px !important;
+  margin-bottom: 22px !important;
+  font-family: var(--sans) !important;
+}
+
+.letter-reference, [data-el="reference"] {
+  font-weight: 700 !important;
+  color: var(--oxford) !important;
+  font-size: 1.02em !important;
+  margin-bottom: 6px !important;
+}
+
+.letter-meta-line {
+  font-size: 0.9em !important;
+  color: var(--ink-muted) !important;
+}
+
+.letter-place, [data-el="place"] {
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+}
+
+.letter-date, [data-el="date"] {
+  color: var(--gold) !important;
+  font-weight: 600 !important;
+}
+
+.letter-archive, [data-el="archive"] {
+  font-size: 0.8em !important;
+  color: var(--ink-faint) !important;
+  margin-top: 6px !important;
+}
+
+.letter-greeting,
+[data-el="greeting"],
+[data-el="salutation"] {
+  margin-bottom: 12px !important;
+  font-weight: 600 !important;
+  color: var(--oxford) !important;
+}
+
+.letter-closing,
+[data-el="letter-closing"],
+[data-el="closing"] {
+  margin-top: 22px !important;
+  padding-top: 10px !important;
+  border-top: 1px dashed var(--rule) !important;
+  text-align: right !important;
+  font-style: italic !important;
+}
+
+.letter-signature,
+[data-el="signature"] {
+  font-weight: 700 !important;
+  color: var(--oxford) !important;
+  font-style: normal !important;
+  margin-top: 4px !important;
+}
+
+.letter-ps,
+[data-el="postscriptum"] {
+  margin-top: 16px !important;
+  text-align: left !important;
+  font-size: 0.92em !important;
+}
+
+/* ── Raw XML Source Code Inspector (Famulus Repro style) ─────────────────── */
+
+.code-wrapper {
+  max-width: 960px !important;
+  margin: 12px auto 36px !important;
+  background: var(--xml-code-bg) !important;
+  border: 1px solid var(--xml-border) !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06) !important;
+}
+
+.code-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: var(--xml-header-bg) !important;
+  padding: 8px 14px !important;
+  border-bottom: 1px solid var(--xml-border) !important;
+  font-size: 11px !important;
+}
+
+.code-header .file-name {
+  font-weight: 600 !important;
+  color: var(--xml-tag) !important;
+  font-family: var(--mono) !important;
+}
+
+.code-header .file-info {
+  color: var(--xml-gutter-color) !important;
+  font-size: 10.5px !important;
+  font-family: var(--mono) !important;
+}
+
+.code-header .copy-btn {
+  background: var(--paper-sheet) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 4px !important;
+  padding: 2px 8px !important;
+  font-family: var(--sans) !important;
+  font-size: 10.5px !important;
+  cursor: pointer !important;
+  color: var(--oxford) !important;
+}
+
+.code-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: var(--mono) !important;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  background: var(--xml-code-bg) !important;
+}
+
+.code-table tr {
+  vertical-align: top !important;
+}
+
+.code-table tr:hover {
+  background: rgba(200, 162, 42, 0.06) !important;
+}
+
+.line-num {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  text-align: right !important;
+  padding: 2px 12px 2px 8px !important;
+  color: var(--xml-gutter-color) !important;
+  background: var(--xml-gutter-bg) !important;
+  border-right: 1px solid var(--xml-border) !important;
+  width: 44px !important;
+  white-space: nowrap !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.line-code {
+  padding: 2px 14px !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  color: var(--xml-text) !important;
+}
+
+.xml-tag { color: var(--xml-tag) !important; font-weight: 600 !important; }
+.xml-attr { color: var(--xml-attr) !important; font-weight: 500 !important; }
+.xml-val { color: var(--xml-val) !important; }
+.xml-bracket { color: var(--xml-bracket) !important; }
+.xml-com { color: var(--xml-com) !important; font-style: italic !important; }
+.xml-pi { color: var(--xml-pi) !important; font-style: italic !important; }
+
+::selection {
+  background: var(--gold-pale) !important;
+  color: var(--ink) !important;
+}
+
+/* ── DTD gap fill: main, footer, hi[rend=spaced] ────────────────────────── */
+
+[data-el="main"],
+.repro-main {
+  display: block;
+}
+
+[data-el="footer"] {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.82em;
+  color: var(--ink-faint);
+  margin-top: 2rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* Letter-spaced text (e.g. proper names in German scholarly printing) */
+[data-el="hi"][data-rend="spaced"] {
+  letter-spacing: 0.12em;
+  word-spacing: 0.04em;
+}
+
+/* Math blocks from equation / math elements */
+.math-block,
+.repro-math {
+  display: block;
+  text-align: center;
+  margin: 1.2em 0;
+  padding: 0.6em 1em;
+  background: rgba(0, 33, 71, 0.03);
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* Book sheet heading element */
+.repro-heading {
+  font-family: var(--sans);
+  font-size: 1.12em;
+  font-weight: 700;
+  color: var(--oxford);
+  margin: 1.4em 0 0.5em;
+  line-height: 1.3;
+}
+
+/* Incipit (letter opening phrase) used inside letter-head */
+.letter-incipit {
+  display: block;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 0.9em;
+  margin-top: 6px;
+  padding-left: 0.5em;
+  border-left: 2px solid var(--gold-border);
+}
+
+/* ── Wide tables as a plate (ephemerides, HAMA sexagesimal grids) ────── */
+
+.repro-table-plate {
+  overflow-x: auto;
+  margin: 1.4em -8px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--paper-sheet);
+  box-shadow: 0 1px 4px rgba(0, 33, 71, 0.05);
+}
+
+.repro-table-plate table,
+.repro-table-plate [data-el="table"] {
+  width: max-content !important;
+  min-width: 100% !important;
+  margin: 0 !important;
+  border: none !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+}
+
+.repro-table-plate th,
+.repro-table-plate td {
+  white-space: normal;
+}
+
+.repro-table-plate .num-cell,
+.repro-table-dense th,
+.repro-table-dense td {
+  white-space: nowrap;
+}
+
+.repro-table-plate tr:first-child th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1.5px solid var(--rule-gold) !important;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  text-align: center !important;
+}
+
+.repro-table-plate tr:nth-child(even) td {
+  background: transparent !important;
+}
+
+.repro-table-plate .num-cell,
+.repro-table-plate td[align="right"],
+.repro-table-plate th[align="right"] {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+.repro-table-plate .center-cell,
+.repro-table-plate td[align="center"],
+.repro-table-plate th[align="center"] {
+  text-align: center !important;
+}
+
+.repro-table-plate td.marginal-gutter {
+  border: none !important;
+  background: transparent !important;
+  color: var(--gold) !important;
+  font-family: var(--mono) !important;
+  font-size: 0.72rem !important;
+  text-align: right !important;
+  padding-right: 8px !important;
+  white-space: nowrap;
+}
+
+.repro-table-dense table,
+.repro-table-dense [data-el="table"] {
+  font-size: 0.78rem !important;
+}
+
+.repro-table-dense th,
+.repro-table-dense td {
+  padding: 3px 6px !important;
+}
+
+.math-inline,
+[data-el="equation"]:not(.repro-math) {
+  font-size: 0.98em;
+}
+
+/* Fraktur only where the transcription marks a switch, not for the whole page. */
+[data-el="hi"][data-rend="fraktur"] {
+  font-family: "UnifrakturMaguntia", "UnifrakturCook", "Blackletter", "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+[data-el="hi"][data-rend="antiqua"] {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: normal;
+}
+
+[data-el="hi"][data-rend="initial"] {
+  float: left;
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 2.4em;
+  line-height: 0.8;
+  padding: 4px 6px 0 0;
+  color: var(--oxford);
+  font-weight: 600;
+}
+
+[data-el="marginal"][data-type="line-number"],
+[data-el="marginal"][data-type="folio"] {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+/* ── Diplomatic marks (archival originals) ───────────────────────────────── */
+
+[data-el="del"] {
+  text-decoration: line-through !important;
+  text-decoration-color: var(--ink-muted) !important;
+  color: var(--ink-muted) !important;
+}
+
+[data-el="add"] {
+  font-size: 0.86em !important;
+  vertical-align: 0.35em !important;
+  color: var(--oxford) !important;
+}
+
+[data-el="add"][place="margin"] {
+  vertical-align: baseline !important;
+  font-style: italic !important;
+}
+
+[data-el="unclear"] {
+  border-bottom: 1px dotted var(--gold) !important;
+}
+
+[data-el="unclear"]:empty::before {
+  content: "[…]" !important;
+  color: var(--ink-faint) !important;
+}
+
+[data-el="supplied"]::before { content: "⟨" !important; color: var(--ink-faint) !important; }
+[data-el="supplied"]::after  { content: "⟩" !important; color: var(--ink-faint) !important; }
+
+/* ── Correspondence registers (entries of <register>) ────────────────────── */
+
+.register-entry {
+  padding: 8px 0 10px !important;
+  border-bottom: 1px solid var(--rule) !important;
+  font-family: var(--serif, Georgia, serif) !important;
+}
+
+.register-entry .reg-line {
+  display: flex !important;
+  gap: 0.8em !important;
+  align-items: baseline !important;
+}
+
+.register-entry .reg-n {
+  font-weight: 700 !important;
+  color: var(--oxford) !important;
+  min-width: 2.6em !important;
+}
+
+.register-entry .reg-date {
+  color: var(--gold) !important;
+  font-weight: 600 !important;
+}
+
+.register-entry .reg-who {
+  padding-left: 3.4em !important;
+  font-style: italic !important;
+}
+
+.register-entry .reg-regest {
+  padding-left: 3.4em !important;
+  color: var(--ink) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --oxford: #7ba2d4;
+    --oxford-soft: #4a6fa5;
+    --gold: #e2ba42;
+    --gold-pale: #282416;
+    --gold-border: #6d5b24;
+    --paper: #1b1c20;
+    --paper-sunken: #141518;
+    --paper-sheet: #22242a;
+    --ink: #eae7df;
+    --ink-muted: #b0ac9f;
+    --ink-faint: #787468;
+    --rule: #363a44;
+    --rule-gold: #7d6b30;
+    --xml-bg: #14161a;
+    --xml-code-bg: #1b1d22;
+    --xml-header-bg: #111215;
+    --xml-border: #33373f;
+    --xml-gutter-color: #636772;
+    --xml-gutter-bg: #18191e;
+    --xml-text: #ece7db;
+    --xml-tag: #6cb6ff;
+    --xml-attr: #e3b341;
+    --xml-val: #7ee787;
+    --xml-bracket: #8b949e;
+    --xml-com: #8b949e;
+    --xml-pi: #e3b341;
+  }
+}

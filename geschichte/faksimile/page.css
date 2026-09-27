@@ -1,0 +1,93 @@
+/*
+ * page.css — Münchner Kepleriana (kepleriana-munich-2024)
+ *
+ * Collection overlay on pdai-page.css (book-sheet: warm paper, Oxford blue chrome,
+ * gold accents). The base sheet already styles register entries, letter parts and
+ * the diplomatic marks del/add/unclear/supplied; this file adds what the archival
+ * file needs beyond that.
+ * Deployed copy: /Volumes/PDAI-1/pdai-collections/kepleriana-munich-2024/page.css
+ */
+
+/* Register pages: a typescript list, set close like the typed original. */
+[data-el="register"] {
+  max-width: 64ch !important;
+  margin: 0 auto !important;
+}
+
+[data-el="register"] > [data-el="p"].p-continuation {
+  color: var(--ink-muted) !important;
+  font-style: italic !important;
+  border-left: 2px solid var(--rule-gold) !important;
+  padding-left: 0.8em !important;
+}
+
+/* Typed and handwritten letters of 1927-1941 */
+[data-el="printed-letterhead"] {
+  font-family: var(--sans) !important;
+  font-size: 0.82em !important;
+  letter-spacing: 0.02em !important;
+  color: var(--ink-muted) !important;
+  margin-bottom: 0.6em !important;
+}
+
+[data-el="file-reference"] {
+  font-family: var(--sans) !important;
+  font-size: 0.8em !important;
+  color: var(--oxford) !important;
+}
+
+/* Kepler's Latin letters of 1630 */
+[data-el="letter-part"][lang="la"] {
+  font-family: var(--serif, Georgia, serif) !important;
+  hyphens: auto !important;
+}
+/* Diplomatic line breaks: the transcription keeps the lines of the typescript
+   and the manuscripts. Justified text would stretch every broken line, so
+   letter prose is set ragged-right and slightly smaller, which lets most typed
+   lines (about 65 characters) fit the column unbroken. */
+[data-el="letter-part"] [data-el="p"],
+[data-el="letter-part"] [data-el="valediction"],
+[data-el="letter-part"] [data-el="postscriptum"] {
+  text-align: left !important;
+  hyphens: manual !important;
+  text-indent: 0 !important;
+  font-size: 0.94em !important;
+  line-height: 1.5 !important;
+}
+
+[data-el="letter-part"] [data-el="p"] + [data-el="p"] {
+  margin-top: 0.7em !important;
+}
+
+/* The facsimile edition is read against the photographs, which stay light:
+   the sheet keeps the warm-paper palette also when the system is dark. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --oxford: #002147;
+    --oxford-soft: #14213d;
+    --gold: #c8a22a;
+    --gold-pale: #fbf5e6;
+    --gold-border: #d4b85c;
+    --paper: #faf8f3;
+    --paper-sunken: #f2ede2;
+    --paper-sheet: #fffdf9;
+    --ink: #1a1a2e;
+    --ink-muted: #4a4a6a;
+    --ink-faint: #7a7a9a;
+    --rule: #e0d8c4;
+    --rule-gold: #c8b560;
+    --xml-bg: #faf7f0;
+    --xml-code-bg: #ffffff;
+    --xml-header-bg: #f2ece0;
+    --xml-border: #ddd6c4;
+    --xml-gutter-color: #9a958a;
+    --xml-gutter-bg: #f9f5ed;
+    --xml-text: #1d1d1b;
+    --xml-tag: #0a4d8c;
+    --xml-attr: #966b16;
+    --xml-val: #2b7a3e;
+    --xml-bracket: #606875;
+    --xml-com: #7f8894;
+    --xml-pi: #b8860b;
+  }
+}

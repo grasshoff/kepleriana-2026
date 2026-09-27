@@ -137,6 +137,20 @@
       min-height: 100%;
     }
     .portal.lead-card { grid-row: span 2; }
+    .portal.method {
+      grid-column: 1 / -1;
+      border-top-color: var(--gold);
+      background:
+        linear-gradient(180deg, rgba(196, 161, 90, 0.1), transparent 4.5rem),
+        var(--paper);
+    }
+    .portal.method h2 span { color: var(--gold-deep); font-style: italic; font-weight: 460; }
+    .method-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+    }
+    .method-cols p { margin: 0 0 0.75rem; }
     .portal .mark {
       font-family: var(--sans);
       font-size: 0.72rem;
@@ -336,7 +350,7 @@
     @media (max-width: 680px) {
       .mast-inner { flex-direction: column; align-items: flex-start; }
       .mast nav a { margin-left: 0; margin-right: 0.9rem; }
-      .portals, .more, .volumes, .docs { grid-template-columns: 1fr; }
+      .portals, .more, .volumes, .docs, .method-cols { grid-template-columns: 1fr; }
       .hero { padding-top: 2.2rem; }
       .go.quiet { margin-left: 0; margin-top: 0.45rem; }
       .docs a { grid-template-columns: 3.4rem 1fr; }
@@ -353,6 +367,7 @@
         <a href="#geschichte">Geschichte</a>
         <a href="#werke">Gesammelte Werke</a>
         <a href="#muenchen">München 2024</a>
+        <a href="#ansatz">Ansatz</a>
         <a href="#weiter">Weiter</a>
       </nav>
     </div>
@@ -373,20 +388,20 @@
           <h2>Die Geschichte der Kepler-Kommission</h2>
           <p>Nachlass, Pulkowo und die Gesammelten Werke, mit einer Faksimile-Edition der Münchner Kepleriana von 1927 bis 1941. Nickelsen und Graßhoff, 27. September 2026.</p>
           <ol class="contents">
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t1-vorbemerkungen"><span class="num">1</span><span>Vorbemerkungen</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-1-nachlass"><span class="num">2.1</span><span>Vorgeschichte des Nachlasses, 1630–1928</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-2-vorgeschichte-edition"><span class="num">2.2</span><span>Vorgeschichte der Edition, 1858–1928</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-3-kommissionsgruendung"><span class="num">2.3</span><span>Der Weg zur Kommissionsgründung</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t2-4-edition-bis-2017"><span class="num">2.4</span><span>Die Edition bis 2017</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-1-vergleich-euler"><span class="num">3.1</span><span>Petersburg und die Euler-Opera-omnia</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-2-zerstreuung"><span class="num">3.2</span><span>Die Zerstreuung der Handschriften</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-3-kepleriana"><span class="num">3.3</span><span>Die Münchner Kepleriana</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t3-4-ausblick-kgw-ai"><span class="num">3.4</span><span>Ausblick: KGW-ai</span></a></li>
-            <li><a href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/t4-faksimile"><span class="num">4</span><span>Editionsgrundsätze der Faksimiles</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#teil-1-vorbemerkungen"><span class="num">1</span><span>Vorbemerkungen</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#vorgeschichte-des-kepler-nachlasses-16301928"><span class="num">2.1</span><span>Vorgeschichte des Nachlasses, 1630–1928</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#vorgeschichte-der-edition-18581928"><span class="num">2.2</span><span>Vorgeschichte der Edition, 1858–1928</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#der-weg-zur-kommissionsgründung-19271935"><span class="num">2.3</span><span>Der Weg zur Kommissionsgründung</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#die-edition-bis-2017"><span class="num">2.4</span><span>Die Edition bis 2017</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#vergleich-der-petersburger-beitrag-und-die-euler-opera-omnia"><span class="num">3.1</span><span>Petersburg und die Euler-Opera-omnia</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#die-zerstreuung-der-kepler-handschriften"><span class="num">3.2</span><span>Die Zerstreuung der Handschriften</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#die-münchner-kepleriana-1"><span class="num">3.3</span><span>Die Münchner Kepleriana</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#ausblick-kgw-ai"><span class="num">3.4</span><span>Ausblick: KGW-ai</span></a></li>
+            <li><a href="geschichte/geschichte-kepler-kommission.html#editionsgrundsätze"><span class="num">4</span><span>Editionsgrundsätze der Faksimiles</span></a></li>
           </ol>
           <p>
-            <a class="go" href="https://lettre.ngrok.dev/kepler-kommission/notebook?nb=kepler-kommission/geschichte-kepler-kommission">Notebook öffnen</a>
-            <a class="go quiet" href="the-long-way-to-a-collected-edition.pdf">Aufsatz als PDF</a>
+            <a class="go" href="geschichte/geschichte-kepler-kommission.html">Geschichte lesen</a>
+            <a class="go quiet" href="geschichte/geschichte-kepler-kommission.pdf">Als PDF</a>
           </p>
         </article>
 
@@ -402,6 +417,17 @@
           <h2>Kepleriana München 2024</h2>
           <p>Acht Dokumente, 102 Seiten, aufgenommen am 14. März 2024 an der Bayerischen Akademie der Wissenschaften: Kommissionsakten, Caspar-Korrespondenz und Reproduktionen zweier Keplerbriefe von 1630.</p>
           <p><a class="go" href="https://lettre.ngrok.dev/kepleriana-munich-2024/open">Faksimiles öffnen</a></p>
+        </article>
+
+        <article class="portal method" id="ansatz">
+          <p class="mark">Erläuterung des methodischen Ansatzes</p>
+          <h2><span>Famulus</span> Edition</h2>
+          <p>Hintergrund der AI-unterstützten Edition. Sie steht hinter den drei Stücken oben: dieselbe Quelle, als Text gelesen, als Faksimile gesehen und als Sammlung befragt.</p>
+          <div class="method-cols">
+            <p>Eine Edition ist die kritische Herausgabe der Werke, Briefe und Handschriften eines Autors. Eine AI Edition nennen wir eine Edition, deren Texte, Faksimiles und Prüfungen als PDAI-Sammlung vorliegen und mit Famulus befragt werden können.</p>
+            <p>PDAI speichert jede Seite als Faksimile, die photographische Wiedergabe, und als Transkription, die diplomatische Wiedergabe des Wortlauts nach einer festen Grammatik. Eine maschinelle Lesung gilt erst als gelesen, wenn eine zweite, unabhängige Lesung dasselbe ergibt; sonst geht sie an den Lektor. Jede Zahl und jedes Datum im Text trägt einen Beleg aus der Quelle.</p>
+          </div>
+          <p><a class="go quiet" href="geschichte/geschichte-kepler-kommission.html#zielsetzung">In den Vorbemerkungen nachlesen</a></p>
         </article>
       </section>
 
