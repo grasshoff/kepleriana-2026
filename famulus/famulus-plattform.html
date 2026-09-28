@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gerd Graßhoff">
+<meta name="keywords" content="Famulus, Forschung, computational epistemology, Sprachinstitution, Aussagenindex, Gebrauchsregel, Famulus Notebook, Partitur">
+
+<title>Famulus. Eine verteilte lokale Plattform für professionelle Forschung</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="famulus-plattform_files/libs/clipboard/clipboard.min.js"></script>
+<script src="famulus-plattform_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="famulus-plattform_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="famulus-plattform_files/libs/quarto-html/popper.min.js"></script>
+<script src="famulus-plattform_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="famulus-plattform_files/libs/quarto-html/anchor.min.js"></script>
+<link href="famulus-plattform_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="famulus-plattform_files/libs/quarto-html/quarto-syntax-highlighting-627b1a08547dd3956b03a3d02a0405aa.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="famulus-plattform_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="famulus-plattform_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="famulus-plattform_files/libs/bootstrap/bootstrap-81303f7597414ca5758e498c2d434d67.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="famulus-plattform_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="famulus-plattform_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="famulus-plattform_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#sec-neugier" id="toc-sec-neugier" class="nav-link active" data-scroll-target="#sec-neugier"><span class="header-section-number">1</span> Neugier</a></li>
+  <li><a href="#sec-these" id="toc-sec-these" class="nav-link" data-scroll-target="#sec-these"><span class="header-section-number">2</span> Verbund von Kompetenzen – AI Agenten im Zusammenspiel mit Forschern</a></li>
+  <li><a href="#sec-forschung" id="toc-sec-forschung" class="nav-link" data-scroll-target="#sec-forschung"><span class="header-section-number">3</span> Die Forschung hinter dem Instrument</a>
+  <ul class="collapse">
+  <li><a href="#bedeutung-als-gebrauch" id="toc-bedeutung-als-gebrauch" class="nav-link" data-scroll-target="#bedeutung-als-gebrauch">Bedeutung als Gebrauch</a></li>
+  <li><a href="#bedeutungsgeschichte-als-forschungsprogramm" id="toc-bedeutungsgeschichte-als-forschungsprogramm" class="nav-link" data-scroll-target="#bedeutungsgeschichte-als-forschungsprogramm">Bedeutungsgeschichte als Forschungsprogramm</a></li>
+  <li><a href="#die-regularitätstheorie-der-kausalität" id="toc-die-regularitätstheorie-der-kausalität" class="nav-link" data-scroll-target="#die-regularitätstheorie-der-kausalität">Die Regularitätstheorie der Kausalität</a></li>
+  <li><a href="#entdeckung-aus-quellen-und-objekten" id="toc-entdeckung-aus-quellen-und-objekten" class="nav-link" data-scroll-target="#entdeckung-aus-quellen-und-objekten">Entdeckung aus Quellen und Objekten</a></li>
+  </ul></li>
+  <li><a href="#sec-architektur" id="toc-sec-architektur" class="nav-link" data-scroll-target="#sec-architektur"><span class="header-section-number">4</span> Warum lokal, warum verteilt</a></li>
+  <li><a href="#sec-substrat" id="toc-sec-substrat" class="nav-link" data-scroll-target="#sec-substrat"><span class="header-section-number">5</span> Erschlossenes Wissen: Seiten, Objekte, Anschlüsse</a></li>
+  <li><a href="#sec-aussagenindex" id="toc-sec-aussagenindex" class="nav-link" data-scroll-target="#sec-aussagenindex"><span class="header-section-number">6</span> Der Aussagenindex</a></li>
+  <li><a href="#sec-sprache" id="toc-sec-sprache" class="nav-link" data-scroll-target="#sec-sprache"><span class="header-section-number">7</span> Die Sprachinstitution</a>
+  <ul class="collapse">
+  <li><a href="#das-register-der-regeln" id="toc-das-register-der-regeln" class="nav-link" data-scroll-target="#das-register-der-regeln">Das Register der Regeln</a></li>
+  <li><a href="#sprachgebrauch-relativ-zu-autor-werk-und-zeit" id="toc-sprachgebrauch-relativ-zu-autor-werk-und-zeit" class="nav-link" data-scroll-target="#sprachgebrauch-relativ-zu-autor-werk-und-zeit">Sprachgebrauch relativ zu Autor, Werk und Zeit</a></li>
+  <li><a href="#sec-situierung" id="toc-sec-situierung" class="nav-link" data-scroll-target="#sec-situierung">Situierung eines Textstücks</a></li>
+  <li><a href="#die-sprachinstitution-als-schutz-der-formulierung" id="toc-die-sprachinstitution-als-schutz-der-formulierung" class="nav-link" data-scroll-target="#die-sprachinstitution-als-schutz-der-formulierung">Die Sprachinstitution als Schutz der Formulierung</a></li>
+  </ul></li>
+  <li><a href="#sec-methode" id="toc-sec-methode" class="nav-link" data-scroll-target="#sec-methode"><span class="header-section-number">8</span> Die Methodeninstitution: computational epistemology</a></li>
+  <li><a href="#sec-orchestrierung" id="toc-sec-orchestrierung" class="nav-link" data-scroll-target="#sec-orchestrierung"><span class="header-section-number">9</span> Eine lesbare Orchestrierung</a></li>
+  <li><a href="#sec-notebook" id="toc-sec-notebook" class="nav-link" data-scroll-target="#sec-notebook"><span class="header-section-number">10</span> Famulus Notebook: ein Medium der Autorenunterstützung</a>
+  <ul class="collapse">
+  <li><a href="#ein-forschungsschritt-ist-ein-block" id="toc-ein-forschungsschritt-ist-ein-block" class="nav-link" data-scroll-target="#ein-forschungsschritt-ist-ein-block">Ein Forschungsschritt ist ein Block</a></li>
+  <li><a href="#lokale-arbeit" id="toc-lokale-arbeit" class="nav-link" data-scroll-target="#lokale-arbeit">Lokale Arbeit</a></li>
+  <li><a href="#arbeit-in-der-gruppe" id="toc-arbeit-in-der-gruppe" class="nav-link" data-scroll-target="#arbeit-in-der-gruppe">Arbeit in der Gruppe</a></li>
+  <li><a href="#von-famulus-geprüft" id="toc-von-famulus-geprüft" class="nav-link" data-scroll-target="#von-famulus-geprüft">Von Famulus geprüft</a></li>
+  <li><a href="#vom-notebook-zur-publikation" id="toc-vom-notebook-zur-publikation" class="nav-link" data-scroll-target="#vom-notebook-zur-publikation">Vom Notebook zur Publikation</a></li>
+  </ul></li>
+  <li><a href="#sec-partituren-gemeinsam" id="toc-sec-partituren-gemeinsam" class="nav-link" data-scroll-target="#sec-partituren-gemeinsam"><span class="header-section-number">11</span> Partituren gemeinsam nutzen</a>
+  <ul class="collapse">
+  <li><a href="#was-besteht" id="toc-was-besteht" class="nav-link" data-scroll-target="#was-besteht">Was besteht</a></li>
+  <li><a href="#was-beabsichtigt-ist" id="toc-was-beabsichtigt-ist" class="nav-link" data-scroll-target="#was-beabsichtigt-ist">Was beabsichtigt ist</a></li>
+  </ul></li>
+  <li><a href="#sec-anwendung" id="toc-sec-anwendung" class="nav-link" data-scroll-target="#sec-anwendung"><span class="header-section-number">12</span> Anwendungsfelder</a></li>
+  <li><a href="#sec-mass" id="toc-sec-mass" class="nav-link" data-scroll-target="#sec-mass"><span class="header-section-number">13</span> Das Maß</a></li>
+  <li><a href="#gemessene-leistung" id="toc-gemessene-leistung" class="nav-link" data-scroll-target="#gemessene-leistung">Gemessene Leistung</a></li>
+  <li><a href="#sec-schluss" id="toc-sec-schluss" class="nav-link" data-scroll-target="#sec-schluss"><span class="header-section-number">14</span> Schluss</a></li>
+  <li><a href="#lücken" id="toc-lücken" class="nav-link" data-scroll-target="#lücken">Lücken</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Andere Formate</h2><ul><li><a href="famulus-plattform.pdf"><i class="bi bi-file-pdf"></i>Typst (arxivai)</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Famulus. Eine verteilte lokale Plattform für professionelle Forschung</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor:in</div>
+  <div class="quarto-title-meta-heading">Zugehörigkeiten</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gerd Graßhoff <a href="mailto:gerd.grasshoff@hu-berlin.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-4450-357X" class="quarto-title-author-orcid" aria-label="ORCID profile for Gerd Graßhoff"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Humboldt-Universität zu Berlin
+          </p>
+        <p class="affiliation">
+            Forschungsinstitut des Deutschen Museums
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">23. September 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Zusammenfassung</div>
+    <p>Die spezialisierten Fachkräfte (Agents) von Famulus führen erprobte wissenschaftliche Arbeitsweisen aus – finden, lesen, datieren, zählen, vergleichen, rekonstruieren, prüfen – im eigenen, sicheren und nur privat zugänglichen Rechnerverbund, mit einem nachprüfbaren Fundort für jeden Schritt. Drei Einrichtungen tragen diese Arbeit: eine Sprachinstitution mit registrierten, zitierbaren und revidierbaren Gebrauchsregeln; eine Wissensbasis mit erschlossenen Sammlungen und einem Index der Aussagen selbst, nicht nur der Wörter; und, gleichrangig, eine Methodeninstitution, die computational epistemology als methodisch reflektierter Apparat wissenschaftlicher Forschung. Das Modell stützt sich auf eigene Quellen und verbessert sich dynamisch auf der Basis eigener Eingaben. Die Substanz – Regeln, Wissensbasis, Methodenapparat und die Spur jedes Schritts – liegt außerhalb des LLM im eigenen Arbeitsbereich von Famulus. Famulus wird trainiert, Fakten heranzuziehen, die richtigen Schlüsse zu ziehen und kritisch zu forschen. Damit ist es im Kern auf die Validierung von Aussagen angelegt und nicht abhängig von unkontrollierbaren Informationen, die nicht nachvollziehbare Quellen ins Internet gehängt haben. Der Forscher arbeitet mit Famulus in Notebooks: Ein Block stellt eine Frage, spielt eine Partitur und hält Antwort, Prüfung und Spur fest. Notebooks werden lokal geführt, in einer Gruppe über ein gemeinsames Verzeichnis von Quellen und Referenzdaten geteilt und können Grundlage einer Publikation werden. Partituren sollen, wie die Stilpakete eines Textsatzsystems, in einem öffentlichen Repositorium mit systematischem Katalog gemeinsam genutzt und weiterentwickelt werden.</p>
+  </div>
+</div>
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Schlüsselwörter</div>
+    <p>Famulus, Forschung, computational epistemology, Sprachinstitution, Aussagenindex, Gebrauchsregel, Famulus Notebook, Partitur</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="sec-neugier" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-neugier"><span class="header-section-number">1</span> Neugier</h2>
+<p>Ein Gelehrter fragt nach Keplers Weg zur Erklärung der Ellipsenbahn. Die Frage ist kurz; ihre Beantwortung verlangt viele Schritte. Welche Quellen sprechen zur Sache? Welche Briefe schrieb Kepler in welchen Jahren, an wen gerichtet, und wo erwähnt er die <em>Astronomia Nova</em>? An wie vielen Stellen verzeichnen die Bände der Kepler-Gesamtausgabe den Namen Tychos, und unter welchen Schreibweisen? Was meint Kepler 1596 im <em>Mysterium Cosmographicum</em> mit <em>anima motrix</em>, was 1609 in der <em>Astronomia Nova</em> mit <em>vis motrix</em>, und warum schreibt er 1621 in der zweiten Auflage des <em>Mysterium</em>, man möge für das Wort <em>anima</em> das Wort <em>vis</em> einsetzen? Welche Aussagen in den lateinischen Bänden behaupten ein Kausalverhältnis zwischen Planetenabstand und Umlaufzeit, und welche davon sind mit Belegen unterlegt?</p>
+<p>Das ist ein Arbeitstag. Wer diesen Horizont von Hand durchmessen will, wählt aus: Er liest einen der Bände, stellt zwölf Belege zusammen statt aller, schreibt den Befund in der Sprache, mit der er anfing, und hört auf, weil die Zeit es gebietet – nicht weil das Verfahren falsch wäre. Was unterbleibt, ist nicht Nachlässigkeit. Es ist eine Grenze der Zeit gegen ein Verfahren, das richtig und aufwendig zugleich ist.</p>
+<p>Der <strong>Famulus</strong> – der Gehilfe, der Material vorbereitet und nicht urteilt – ist in der Gelehrtengeschichte vertraut. Erasmus von Rotterdam beschäftigte in Basel Amanuenses: einer schrieb nach Diktat, ein anderer ordnete Manuskripte, ein dritter stellte Belegstellen zusammen. Keiner von ihnen schrieb den Aufsatz; keiner urteilte über Erasmus’ Beweisführung. Der Gelehrte urteilte. Die Amanuenses erweiterten seinen Horizont: Sie machten in einem Tag zugänglich, was der Gelehrte in einer Woche nicht gelesen hätte. <em>Famulus</em> heißt diese Plattform nach diesem Vorbild. Sie besteht aus spezialisierten <strong>Fachkräften (Agents)</strong>, von denen jede eine Arbeitsweise beherrscht: Material vorbereiten, Lemmata zählen, Briefe ordnen, Hypothesen an Quellen prüfen, Argumente in Schlussformen rekonstruieren. Keine von ihnen urteilt.</p>
+<p>Die erste Frage des Gelehrten – wer schreibt in welcher Form, unter welchem Namen – wird an einem laufenden Speicher beantwortet:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Bemerkenswert">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Bemerkenswert
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Eine Person in wechselnden Schreibweisen, drei Sammlungen, Millisekunden</strong></p>
+<p>Dieselbe Frage nach einer Person, deren Name in den Quellen in vielen Formen erscheint, an drei Sammlungen gestellt: <code>eulerOO</code> findet 56 Formen von <em>Bernoulli</em> in 19 ms, <code>kepler-prim</code> 108 Formen von <em>Tycho</em> in 33 ms, <code>karman-nachlass</code> 85 Formen von <em>Prandtl</em> in 24 ms (jeweils Median aus 19 Wiederholungen). Die Formen stammen aus den Quellen selbst, nicht aus einer vorab gepflegten Namensliste; jede Form führt zu ihren Sätzen.</p>
+<p>Messlauf vom 23. September 2026, <code>results.json#P1</code></p>
+</div>
+</div>
+<p>Das ist der erste Schritt: finden. Die weiteren folgen aus ihm – lesen, transkribieren, datieren, zählen, vergleichen, rekonstruieren, ordnen, entwerfen, prüfen. Die Plattform führt jeden davon aus; wo sie an ihre Grenze kommt, benennt sie die Grenze. Die Schritte eines Forschers halten sich in einem Notebook fest, das Frage, Antwort und Prüfung zusammen aufbewahrt und mit anderen geteilt werden kann (<a href="#sec-notebook" class="quarto-xref">Kapitel&nbsp;10</a>). Der Gelehrte urteilt.</p>
+</section>
+<section id="sec-these" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-these"><span class="header-section-number">2</span> Verbund von Kompetenzen – AI Agenten im Zusammenspiel mit Forschern</h2>
+<p>Die Fachkräfte von Famulus führen erprobte wissenschaftliche Arbeitsweisen aus – in ihrer ganzen Reichweite, in der Zeit, die die Sache lässt, nachprüfbar in jedem Schritt. Das setzt drei Bedingungen voraus.</p>
+<p>Erstens beherrscht jede Fachkraft die Sprache ihres Fachs. Die Regeln, denen sie im Gebrauch der Wörter folgt, sind aufgeschrieben, zitierbar und revidierbar; sie liegen nicht stumm in den Gewichten eines Modells. Eine <strong>Regel</strong> ist dabei eine Praxis, die gelehrt, zitiert und korrigiert werden kann, keine Richtlinie, die man befolgt, ohne sie aussprechen zu können <span class="citation" data-cites="wittgensteinPU2022">(<a href="#ref-wittgensteinPU2022" role="doc-biblioref">Wittgenstein 2022</a>, PU §201–202)</span>. Diese Bedingung erfüllt die Sprachinstitution (<a href="#sec-sprache" class="quarto-xref">Kapitel&nbsp;7</a>).</p>
+<p>Zweitens antwortet jede Fachkraft aus einer erschlossenen <strong>Wissensbasis</strong>: den kuratierten Sammlungen von Seiten und Objektakten. In ihr hat jede Behauptung ihren <strong>Fundort</strong>, den Belegort <code>(Sammlung, Dokument, Seite, Satz)</code> (<a href="#sec-substrat" class="quarto-xref">Kapitel&nbsp;5</a>). Zur Wissensbasis gehört ein <strong>Aussagenindex</strong>. Er verzeichnet nicht das Wort, sondern was ein Satz behauptet. Der Unterschied ist sachlich begründet: Sätze drücken Aussagen aus, und nur Aussagen sind wahr oder falsch. Sachverhalte bestehen oder bestehen nicht; eine Tatsache ist ein bestehender Sachverhalt. Weder Sachverhalte noch Tatsachen sind Wahrheitsträger; sie sind Teile der Welt. Der Index der Aussagen ist deshalb der Gegenstand, an dem die Methodeninstitution arbeitet (<a href="#sec-aussagenindex" class="quarto-xref">Kapitel&nbsp;6</a>).</p>
+<p>Drittens arbeitet jede Fachkraft unter einer zweiten Institution, die der Sprachinstitution im Rang gleichsteht: der computational epistemology, dem methodisch reflektierten Apparat wissenschaftlicher Methode. Zu ihm gehören Schlussformen, die Rekonstruktion und Bewertung von Argumenten, die Prüfung von Hypothesen, die kausale Analyse, die Messung mit Fehlermodell und die Rekonstruktion von Entdeckungen (<a href="#sec-methode" class="quarto-xref">Kapitel&nbsp;8</a>). Wie die Sprachinstitution die Regeln des Sprachgebrauchs registriert, so registriert dieser Apparat die Regeln des Schließens und Prüfens. Er bemisst jede Behauptung an ihrer Rechtfertigung vor dem besten verfügbaren Wissen.</p>
+<p>Die Fachkräfte lernen. Wo ihnen Kenntnis oder Fertigkeit fehlt, wird die Lücke erkannt, in einer Rückkopplungsschleife ausgewertet und als Revision mit Lebenszyklus in Regeln, Verfahren und Sprachverständnis überführt. Jede Revision trägt ihre Begründung und kann zurückgenommen werden. Dass eine Fachkraft von einer anderen lernt und eine abweichende Sicht mit Begründung vorträgt, ist als Entwurf formuliert; eine laufende Instanz gibt es dafür noch nicht (<strong>Lücke G5</strong>).</p>
+<p>Der Forscher und die Fachkräfte arbeiten in einer gemeinsamen Form zusammen: im Notebook. Dort stellt der Forscher die Frage, eine Fachkraft spielt die Partitur, die den Weg zur Antwort beschreibt, und das Notebook hält fest, was geschah und wie das Ergebnis geprüft wurde (<a href="#sec-notebook" class="quarto-xref">Kapitel&nbsp;10</a>). Die Partituren selbst sind Dokumente, die geteilt und gemeinsam weiterentwickelt werden können (<a href="#sec-partituren-gemeinsam" class="quarto-xref">Kapitel&nbsp;11</a>).</p>
+</section>
+<section id="sec-forschung" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-forschung"><span class="header-section-number">3</span> Die Forschung hinter dem Instrument</h2>
+<p>Drei Forschungsprogramme stehen hinter der Plattform, jedes mit einem ausgeführten Fall und seiner Akte.</p>
+<section id="bedeutung-als-gebrauch" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="bedeutung-als-gebrauch">Bedeutung als Gebrauch</h3>
+<p>Was ein Terminus bedeutet, zeigt sich in seinem Gebrauch in einer Praxis <span class="citation" data-cites="wittgensteinPU2022">(<a href="#ref-wittgensteinPU2022" role="doc-biblioref">Wittgenstein 2022</a>, PU §43)</span>. Eine Gebrauchsregel lässt sich registrieren, zitieren und korrigieren. Eine Praxis, der gefolgt wird, ohne dass die Regel ausgesprochen werden könnte, ist keine Regelpraxis in diesem Sinn <span class="citation" data-cites="wittgensteinPU2022">(<a href="#ref-wittgensteinPU2022" role="doc-biblioref">Wittgenstein 2022</a>, PU §201–202)</span>. <strong>Regelfolgen</strong> ist das Ausführen einer Praxis, nicht nur das Kennen einer Regel. Regeln identifiziert man deshalb nicht durch Introspektion, sondern durch die Beobachtung von Mustern im Gebrauch.</p>
+<p>Der Fall ist Keplers Rede von der Ursache der Planetenbewegung. Im <em>Mysterium Cosmographicum</em> von 1596 bewegt eine Seele die Planeten: Entweder sind die bewegenden Seelen um so schwächer, je weiter sie von der Sonne entfernt sind, oder es gibt eine einzige bewegende Seele im Zentrum aller Bahnen, in der Sonne, deren Antrieb mit der Entfernung erlahmt. In der <em>Astronomia Nova</em> von 1609 ist die Ursache eine bewegende Kraft im Körper der Sonne, die wie das Licht in einem größeren Umkreis verdünnt und in einem kleineren verdichtet wird. In der zweiten Auflage des <em>Mysterium</em> von 1621 kommentiert Kepler seinen früheren Satz selbst: Setze man für das Wort <em>anima</em> das Wort <em>vis</em>, so habe man das Prinzip selbst, aus dem die Himmelsphysik der <em>Astronomia Nova</em> hervorgegangen sei. Früher habe er geglaubt, die Ursache der Planetenbewegung sei eine Seele; als er bedachte, dass diese Ursache mit der Entfernung schwächer wird wie das Licht der Sonne, habe er geschlossen, diese Kraft sei etwas Körperliches.</p>
+<div id="tbl-kepler" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kepler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;1: Keplers Übergang von <em>anima motrix</em> zu <em>vis motrix</em> in den Belegen des Wörterbuchs der Sprachinstitution (<code>sense_locus</code>, <code>sense_relation_evidence</code>, Sammlung <code>kepler-prim</code>).
+</figcaption>
+<div aria-describedby="tbl-kepler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Jahr</th>
+<th>Werk</th>
+<th>Fundort <code>(Band, Seite, Satz)</code></th>
+<th>Wortlaut (Auszug)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1596</td>
+<td><em>Mysterium Cosmographicum</em></td>
+<td>KGW 1, 83, 9</td>
+<td><em>aut, vnam esse motricem animam in orbium omnium centro, scilicet in Sole</em></td>
+</tr>
+<tr class="even">
+<td>1609</td>
+<td><em>Astronomia Nova</em></td>
+<td>KGW 3, 44, 0</td>
+<td><em>Virtutem motricem plane ut Lucem, recipere quantitates, extenuariqe in majori ambitu, condensari in minori</em></td>
+</tr>
+<tr class="odd">
+<td>1621</td>
+<td><em>Mysterium</em>, 2. Auflage</td>
+<td>KGW 8, 109, 17</td>
+<td><em>Si pro voce Anima, vocem Vim substituas, habes ipsissimum principium</em></td>
+</tr>
+<tr class="even">
+<td>1621</td>
+<td><em>Mysterium</em>, 2. Auflage</td>
+<td>KGW 8, 109, 22</td>
+<td><em>hinc conclusi, Vim hanc esse corporeum aliquid</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Das Wörterbuch der Plattform führt beide Gebrauchsweisen als eigene Bedeutungen mit Autor, Werk und Zeitraum: <em>anima motrix</em> für 1596, <em>vis motrix</em> für 1609–1621, verbunden durch die Beziehung „ersetzt“, die mit den Sätzen der Anmerkung von 1621 belegt ist. Jede Bedeutung trägt eine Gebrauchsregel. Die Regel zu <em>anima motrix</em> lautet: Keplers Text von 1596 als Rede von einer bewegenden Seele lesen und die Kraft von 1609 nicht in ihn zurücklesen. Die Zählung allein entscheidet die Bedeutung nicht. In den lateinischen Sätzen des Bandes von 1596 steht <em>anima motrix</em> in 2 Sätzen, <em>vis</em> oder <em>virtus motrix</em> in 3; im Band von 1609 sind es 6 und 30 (Zählung nach dem Satzschlüssel <code>(doc_id, pidx, sent_idx)</code>, nur lateinische Sätze, Muster der jeweiligen Bedeutung). Beide Wörter stehen also in beiden Werken. Was sich ändert, ist ihr Gebrauch: die Rolle, die das Wort in Keplers Erklärung der Planetenbewegung spielt.</p>
+</section>
+<section id="bedeutungsgeschichte-als-forschungsprogramm" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="bedeutungsgeschichte-als-forschungsprogramm">Bedeutungsgeschichte als Forschungsprogramm</h3>
+<p>Die Bedeutungsgeschichte ist ein eigenes Forschungsfeld, das die Plattform trägt. Die 4 287 Abschnitte der Referenztexte, die nach Paragraphen oder Abschnittsnummern verankert sind, stammen aus elf Werken; zu ihnen treten die Sätze der erschlossenen Sammlungen. Aus beiden wird rekonstruiert, wie ein Begriff in einer Gemeinschaft entstand, sich veränderte und in konkurrierende Traditionen auseinanderfiel. Das Wörterbuch bildet diese Geschichte ab: je Lemma ein Kopfwort mit Bedeutungen, je Bedeutung Autor, Werk, Zeitraum, Diskussionszusammenhang und Zitat aus dem Fundort. Heute verzeichnet es 171 Bedeutungen mit 720 Fundorten. Keiner Bedeutung wird ohne Beleg eine Epoche zugeschrieben.</p>
+<p>Eine Bedeutung, die an Autor, Werk und Zeit gebunden ist, lässt sich auch umgekehrt gebrauchen: Ein Textstück ohne Angabe kann an den Sprachgebrauch der bekannten Autoren und Werke gehalten werden. Wie weit das trägt, ist gemessen (<a href="#sec-situierung">Situierung eines Textstücks</a>, <a href="#sec-sprache" class="quarto-xref">Kapitel&nbsp;7</a>).</p>
+</section>
+<section id="die-regularitätstheorie-der-kausalität" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="die-regularitätstheorie-der-kausalität">Die Regularitätstheorie der Kausalität</h3>
+<p>Das zweite Programm ist die Bewertung kausaler Hypothesen. Eine <strong>minimale Theorie</strong> legt für einen gegebenen Typ von Wirkung fest, welche Kombinationen von Faktoren für sie hinreichen, ohne einen unnötigen Faktor zu enthalten <span class="citation" data-cites="grasshoff2001b">(<a href="#ref-grasshoff2001b" role="doc-biblioref">Graßhoff und May 2001</a>)</span>. Sie ist eine Disjunktion <strong>minimal hinreichender Bedingungen</strong>; das Bündel der Glieder einer solchen Bedingung heißt <strong>Cluster</strong>. <strong>Homogenität</strong> wird in dieser Theorie minimiert, nicht maximiert: Die Bedingung verlangt nur, dass eines der Glieder jedes alternativen Clusters gemeinhin fehlt, sodass die alternativen Cluster außer Kraft sind, während das Feld homogen bleibt. Das hält den Aufwand des Experimentierenden gering und lässt zulässige kausale Schlüsse aus Experimenten zu, die eine stärkere Forderung verböte.</p>
+<p><a href="#fig-f1" class="quarto-xref">Abbildung&nbsp;1</a> zeigt eine minimale Theorie in der kausalen Bildsprache der Plattform.</p>
+<div id="fig-f1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/F1-cvl-minimale-theorie.svg" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1: Diagramm einer minimalen Theorie in kausaler Bildsprache. Jeder Cluster ist eine minimal hinreichende Bedingung; die Disjunktion über die Cluster ergibt die minimale Theorie der Wirkung. Negation: einfaches Strichsymbol. Konjunktion: Bogen über den Gliedern. Quelle: <code>causal-architect/figures/cvl-schematic-mt.svg</code>
+</figcaption>
+</figure>
+</div>
+<p>Der Fall, an dem diese Theorie erprobt wurde, ist die Entdeckung des Harnstoffzyklus durch Hans Krebs und Kurt Henseleit im Jahr 1932. Die Laborbücher wurden transkribiert, die Schritte des Entdeckungsprozesses rekonstruiert und mit Computermodellen nachvollzogen <span class="citation" data-cites="grasshoff1998a grasshoff2001 Graßhoff2003a">(<a href="#ref-grasshoff1998a" role="doc-biblioref">Graßhoff 1998</a>; <a href="#ref-grasshoff2001" role="doc-biblioref">Graßhoff u.&nbsp;a. 2001</a>; <a href="#ref-Graßhoff2003a" role="doc-biblioref">Graßhoff und May 2003</a>)</span>. Die Rekonstruktion des experimentellen Vorgehens von Krebs und Henseleit ist zugleich ein Fall für die Analyse der Begriffe, die im Labor entstanden <span class="citation" data-cites="nickelsen2009">(<a href="#ref-nickelsen2009" role="doc-biblioref">Nickelsen und Graßhoff 2009</a>)</span>. Der Schritt, an dem der Zyklus sichtbar wurde, ist der Ornithin-Effekt: Ornithin beschleunigt die Harnstoffsynthese, ohne dabei verbraucht zu werden. Er hat seinen Belegort in den Einträgen der Laborbücher und in den Versuchsreihen, die Krebs im Frühjahr 1932 durchführte <span class="citation" data-cites="Graßhoff2003a">(<a href="#ref-Graßhoff2003a" role="doc-biblioref">Graßhoff und May 2003</a>)</span>.</p>
+<p>Die Rezeption der Regularitätstheorie in der philosophischen Literatur – ihre Aufnahme im Eintrag „causation-regularity“ der Stanford Encyclopedia of Philosophy und die methodischen Weiterentwicklungen durch Baumgartner und Falk – ist nicht belegt, solange diese Quellen nicht in der Wissensbasis stehen (<strong>Lücke G1</strong>).</p>
+</section>
+<section id="entdeckung-aus-quellen-und-objekten" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="entdeckung-aus-quellen-und-objekten">Entdeckung aus Quellen und Objekten</h3>
+<p>Das dritte Programm behandelt <strong>Entdeckung</strong> als rekonstruierbaren Prozess aus Primärquellen, nicht als Ereignis, das man nur beschreiben kann. Neben dem Harnstoffzyklus wurde es auf weitere Gebiete ausgedehnt. Keplers <em>Astronomia Nova</em> wurde als Rekonstruktion von Argumenten aus den Quellen bearbeitet <span class="citation" data-cites="grasshoff1999a">(<a href="#ref-grasshoff1999a" role="doc-biblioref">Graßhoff 1999</a>)</span>; das Euler-Eneström-Korpus und die babylonischen Astronomischen Tagebücher folgten. Jedes dieser Projekte hat seine eigene Quellenlage, seine eigene Sprache und seinen eigenen Typ von Evidenz; sie teilen das Verfahren.</p>
+<p>Die Säulen des Pantheon in Rom wurden aus 3D-Vermessungsdaten entschlüsselt: ihre Proportionen, ihre Bauabfolge, ihre Lichtführung – aus einem Punktwolken-Korpus und seiner geometrischen Analyse <span class="citation" data-cites="grashoff_gerd_decoding_2014">(<a href="#ref-grashoff_gerd_decoding_2014" role="doc-biblioref">Graßhoff, Gerd und Berndt, Christian 2014</a>)</span>. Die Scandaten, auf denen diese Analyse beruht, sind in der Wissensbasis nicht zugänglich (<strong>Lücke G4</strong>).</p>
+<p>Die konischen Sonnenuhren der Antike wurden aus 3D-Scans rekonstruiert: Rillen und Stundenlinien werden erkannt, die geographische Breite, für die eine Uhr gebaut wurde, wird berechnet, und aus mehreren unabhängigen Messungen wird ein Konsens gebildet. Eine unabhängige Messreihe heißt dabei <strong>Zeuge</strong>, das Ergebnis über die Zeugen der <strong>Konsens</strong>.</p>
+</section>
+</section>
+<section id="sec-architektur" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-architektur"><span class="header-section-number">4</span> Warum lokal, warum verteilt</h2>
+<p>Drei Folgen begründen die lokale Architektur; jede ist eine Bedingungsaussage.</p>
+<p>Erstens: Wenn die Sammlungen, Register, Notizen und die Korrespondenz im eigenen Rechnerverbund liegen und dort verarbeitet werden, bleibt die Hoheit über die Daten beim Forscher. Kein fremdes Modell wird auf seinen Quellen trainiert; kein außenstehender Betreiber sieht das Material; die Integritätsregel (<a href="#sec-substrat" class="quarto-xref">Kapitel&nbsp;5</a>) schützt die Quellschicht vor ihren Ableitungen. Spiegelung und Schnappschüsse laufen im eigenen Rechnerverbund.</p>
+<p>Zweitens: Wenn das Transkriptionsmodell lokal geladen ist, liegen die Kosten pro Seite bei den Betriebskosten des eigenen Rechners, ohne Volumengebühr und ohne Preisänderungsrisiko. Wenn gehostete Modelle eingesetzt werden, verlassen Seitenbilder den Rechnerverbund, und die Kosten sind messbar. Im Abrechnungsspeicher <code>ocr_billing.duckdb</code> sind bis zum 23. September 2026 425 Seiten über den gehosteten Pfad verbucht, 39 davon als Einzelanfrage und 386 im Stapelverfahren. Die Kosten je Seite liegen im Median bei 0,29 US-Cent, in der Spanne 0,06–0,93 US-Cent. Der weitaus größere Durchsatz, darunter die 38 197 Seiten des Kármán-Nachlasses, lief über lokal geladene Modelle; er erscheint im Abrechnungsspeicher nicht, weil dort keine Geldkosten anfallen, und ist in den Manifesten der Sammlungen (<code>status.json</code>) und in ihren Stanza-Speichern ausgewiesen.</p>
+<p>Diese Speicher umfassen 19 Stanza-Datenbanken mit 32 802 294 Token und 1 162 022 Entitätsspannen (Neuzählung vom 23. September 2026).</p>
+<p>Drittens: Wenn das Modell lokal läuft, sinkt die Latenz am Arbeitsplatz auf die Zeit der Rechnung ohne Netzanteil. Die Abfragezeiten der Leistungstafel – 7 bis 52 ms für Lemma-, Namens- und Wörterbuchoperationen – setzen voraus, dass die Stanza-Datenbanken auf demselben Rechner liegen wie die Abfragen.</p>
+<p>Die Plattform ist an kein Modell und keinen Hersteller gebunden. Ihre Substanz – Regeln, Wissensbasis, Methodenapparat, die Spur jeder Verarbeitung – liegt außerhalb des Modells und bleibt beim Modellwechsel erhalten. Modelle erscheinen in diesem Text deshalb als Rolle (Transkriptionsmodell, Einbettungsmodell, Sprachmodell) mit gemessener Leistung; ihre Namen stehen in den Messprotokollen, aus denen die Zahlen stammen.</p>
+<p>Der <strong>Rechnerverbund</strong> besteht aus spezialisierten Rechnern: einem Knoten für die Stapeloperationen (Transkription, Stanza-Analyse, Einbettung) und weiteren für Abfragedienste, Viewer und Monitore. Welcher Rechner was ausführt, steht in einem Register und ist nicht im Code verdrahtet. Die Verbindung zwischen den Rechnern läuft über ein privates, verschlüsseltes Netz, das nur die eigenen Geräte kennt. <a href="#fig-f3" class="quarto-xref">Abbildung&nbsp;2</a> zeigt den Verbund mit der Grenze des geschlossenen Betriebs: was innerhalb bleibt und was – der gehostete Transkriptionspfad – ihn verlässt.</p>
+<div class="cell" data-fig-width="5.5" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-f3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-f3">flowchart LR
+  subgraph verbund["Eigener Rechnerverbund"]
+    A["Mac Studio: Speicher, Viewer, Abfragen"]
+    B["Mac mini: Stapel-OCR, Sprachmodell"]
+    C["Mac M4: Stanza, Einbettung"]
+    A --- B
+    A --- C
+  end
+  D["Gehosteter Transkriptionspfad"]
+  verbund -. "Seitenbilder" .-&gt; D
+  D -. "Transkripte" .-&gt; verbund
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2: Der Rechnerverbund von Famulus. Die Umrandung markiert den geschlossenen Betrieb; außerhalb liegt nur der gehostete Transkriptionspfad, über den bis zum 23. September 2026 425 Seiten liefen.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Die Konformität mit europäischem Recht ist eine Folge der Architektur, keine Zusicherung: Was im eigenen Rechnerverbund verarbeitet wird, verlässt ihn nicht; Verantwortlicher und Verarbeiter fallen zusammen; die Spur jeder Verarbeitung (<a href="#sec-orchestrierung" class="quarto-xref">Kapitel&nbsp;9</a>) ist Teil des Systems. Die rechtliche Einordnung nach DSGVO und KI-Verordnung setzt die Rechtstexte in der Wissensbasis voraus (<strong>Lücke G6</strong>); bis dahin wird die technische Folge behauptet, nicht die rechtliche Einordnung.</p>
+<p>Die erschlossenen Sammlungen mit ihren Manifesten, Registern und Viewern bilden eine <strong>Handbibliothek</strong>: systematisch geordnet, im Rechnerverbund zugänglich und ohne Sonderkenntnisse benutzbar. Ordnung heißt hier: ein Katalog, ein Manifest je Sammlung, ein Fundort je Seite. 41 Sammlungen tragen ein Manifest; 19 Editionsregister stellen einen Teil davon in Viewern bereit (Neuzählung vom 23. September 2026). Was eine Sammlung enthält und was ihr fehlt, nennt ihr Manifest.</p>
+</section>
+<section id="sec-substrat" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-substrat"><span class="header-section-number">5</span> Erschlossenes Wissen: Seiten, Objekte, Anschlüsse</h2>
+<p>Die Wissensbasis kennt zwei Evidenzeinheiten. Die erste ist die <strong>Seite</strong> – kein Scan und keine Bildschirmdarstellung, sondern ein strukturiertes Transkript unter der Adresse <code>(Sammlung, Dokument-ID, Seitenindex)</code>. Was das Transkriptionsmodell aus einem Seitenbild liest, wird in einem XML-Dokument festgehalten, das gegen eine Grammatik (DTD) geprüft ist. Abgeleitete Schichten – Satzbäume, Entitätsspannen, Lemmatabellen, Wörterbucheinträge – bauen auf dieser Schicht auf, ohne sie zu überschreiben. Das ist die <strong>Integritätsregel</strong>: Abgeleitete Schichten ersetzen die Quellschicht nie.</p>
+<p><a href="#fig-f4" class="quarto-xref">Abbildung&nbsp;3</a> zeigt einen Fall: <code>E57</code> aus dem Eneström-Werkverzeichnis, Seite 58 (<code>pidx</code> 058), mit Figur 11 und den Formeln zur Gezeitenhöhe – links das Faksimile, rechts die aus der Transkription gewonnene Buchseite mit Kopfzeile, Absatznummern, Formeln und Figur. Der Leser kann dieselbe Seite unter <code>enestroem/E57?p=59</code> aufrufen und die Transkription an der Vorlage prüfen. Die Abbildung belegt, dass die Transkription überprüfbar ist.</p>
+<div id="fig-f4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/F4-e57-p058-facsimile-xml.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3: <code>E57</code> aus dem Eneström-Werkverzeichnis, <code>pidx</code> 058, mit Figur 11 und den Formeln zur Gezeitenhöhe. Links das Faksimile, rechts die strukturierte Buchseite. Aufgenommen am 9. September 2026 vom laufenden Viewer (<code>enestroem/E57?p=59</code>).
+</figcaption>
+</figure>
+</div>
+<p>Die zweite Evidenzeinheit ist die <strong>Objektakte</strong>: ein strukturierter Datensatz für ein materielles Objekt mit Scan, Primitiven (rekonstruierten geometrischen Formen), Messtabelle mit Fehlermodell, Zeugentabelle und Konsensurteil. Ihre Adressform <code>(Sammlung, Objekt-ID, Artefakt, Parameter)</code> ist ein Vorschlag, weil kein Standard für sie besteht. Die Sonnenuhr ObjID126 der Sammlung Ancient Sundials der Berlin Sundial Collaboration (Delos, Archäologisches Museum, Inv. B3652) trägt ihre Breite φ = 38,01° aus vier unabhängigen Messreihen als Konsens nach dem Zeugenprinzip; der Wert steht in der Objektakte und ist nicht aus einem Modell interpoliert.</p>
+<p>Abgeleitete Schichten verbinden beide Evidenzeinheiten: Satzbäume, erkannte Eigennamen mit ihren Typen, Lemmatabellen mit allen Flexionsformen je Lemma, Orts- und Personenverzeichnisse, Briefregister mit Datierung und Absender-Empfänger-Paaren und das Wörterbuch der Sprachinstitution mit Bedeutungen relativ zu Autor, Werk und Zeit. Jede Schicht hat ihre eigene Adresse; keine überschreibt die Seite oder die Objektakte.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Bestand · fünf Sammlungen</strong></p>
+<p>41 Manifeste · 16 bereit · 4 teilbereit · 21 nicht bereit</p>
+<p><code>karman-nachlass</code>: 1 066 Dokumente, 38 197 Seiten, 8,71 Mio. Token. <code>kepler-prim</code>: 486 721 Sätze, davon 325 702 lateinisch. <code>enestroem</code>: 27 047 Seiten bei Manifest <code>not_ready</code> – die Stanza-Schicht steht, die fehlenden Schichten nennt das Manifest.</p>
+<p><code>results.json#P6</code> · 23. September 2026</p>
+</div>
+</div>
+<p>Um die Handbibliothek herum liegt das Wissen, das über Schnittstellen zugänglich ist. Ein <strong>Anschluss</strong> ist eine Schnittstelle zu einem außenliegenden Datenbestand. Er stellt jeden übernommenen Datensatz unter dieselbe Adressdisziplin: Herkunft, Abfragezeitpunkt, Fundort im Quellsystem.</p>
+<div id="tbl-f4b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f4b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;2: Anschlüsse an außenliegende Datenbestände; vorläufiger Stand, das vollständige Verzeichnis ist aus dem Register der Dienste zu erheben (<strong>Lücke G7</strong>).
+</figcaption>
+<div aria-describedby="tbl-f4b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Anschluss</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dimensions-Publikationsdaten (arXiv, ORCID, DOI)</td>
+<td>vorhanden</td>
+</tr>
+<tr class="even">
+<td>BibLaTeX-Bibliographien (Kuratierung)</td>
+<td>vorhanden</td>
+</tr>
+<tr class="odd">
+<td>Bibliothekskataloge (GND, WorldCat)</td>
+<td>fehlt</td>
+</tr>
+<tr class="even">
+<td>Wikidata, Europeana</td>
+<td>fehlt</td>
+</tr>
+<tr class="odd">
+<td>IIIF-Bildserver</td>
+<td>fehlt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Wo ein Standard besteht, wird er übernommen: EDTF (ISO 8601-2) für Datierungen, DOI und ORCID für Identität, BibLaTeX für Bibliographie, DTD-Grammatiken für die Struktur der Seite. Wo keiner besteht – Objektakte, Fundort –, wird eine Form vorgeschlagen und als Vorschlag gekennzeichnet.</p>
+<p>Kuratiertes Wissen tritt als <strong>Referenzautorität</strong> in die Wissensbasis ein: Referenzwerke, Fachlexika und Normen werden nach Sigle und Fundort zitiert, nie aus dem Modell paraphrasiert. Registriert sind 11 Autoritäten in <code>lwgrammar_reference.duckdb</code>. Der Bestand wächst nur durch Aufnahme mit Nachweis.</p>
+<p>Auch das <strong>Verfahrenswissen</strong> der Plattform – Instruktionen, Partituren, Gebrauchsregeln, Prüfverfahren – ist Bestand der Wissensbasis: mit Version, Begründung und Lebenszyklus, revidiert durch die Lernschleife (<a href="#sec-orchestrierung" class="quarto-xref">Kapitel&nbsp;9</a>), nie still überschrieben. Von 39 Instruktionsversionen in <code>assessment.duckdb</code> sind 30 aktiv, 6 zurückgewiesen und 3 abgelöst. Die Tabelle der Partiturversionen hat 0 Zeilen: Die Lernschleife für Partituren ist implementiert, aber noch nicht gelaufen.</p>
+<p>Die Adressdisziplin – ein Fundort für jede Behauptung – ist die technische Bedingung dafür, dass die Plattform überprüfbar ist. Eine Behauptung ohne Fundort kann man glauben oder ablehnen, aber nicht prüfen. Wer eine Behauptung der Plattform prüfen will, findet unter der Adresse <code>(Sammlung, Dokument-ID, Seitenindex, Satznummer)</code> das Dokument, den Satz und die Ableitung und kann dort widersprechen. Der Widerspruch ist das Verfahren, durch das die Wissensbasis wächst: Die neue Evidenz wird aufgenommen, die widersprechende Aussage als Lücke oder Revision markiert, und der Lebenszyklus beginnt von vorn.</p>
+</section>
+<section id="sec-aussagenindex" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-aussagenindex"><span class="header-section-number">6</span> Der Aussagenindex</h2>
+<p>Die Verzeichnisse der Plattform – Wörter, Personen in ihren Schreibweisen, Lemmata, Orte, Zeitangaben – erschließen den überlieferten Apparat. Ein <strong>Verzeichnis</strong> findet Vorkommen. Der <strong>Aussagenindex</strong> findet Behauptungen: Er verzeichnet, was ein Satz behauptet – Befunde, Feststellungen von Tatsachen, Grundsätze, Schlussfolgerungen, physikalische und mathematische Aussagen. Wer ein Argument rekonstruiert, braucht die Aussagen, nicht die Wörter.</p>
+<p>Der Index ist die Tabelle <code>statements</code> in <code>&lt;Sammlung&gt;_concepts.duckdb</code> mit den Feldern Fundort, Autor, Datum und Thema (<code>concept_key</code>). Bestand am 23. September 2026:</p>
+<div id="tbl-f12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3: Aussagenindex, Bestand nach Sammlung (<code>results.json#P8</code>, 23. September 2026).
+</figcaption>
+<div aria-describedby="tbl-f12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sammlung</th>
+<th>Aussagen</th>
+<th>mit Datum</th>
+<th>mit Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eulerOO</code></td>
+<td>306</td>
+<td>2 (0,7 %)</td>
+<td>6 (2,0 %)</td>
+</tr>
+<tr class="even">
+<td><code>enestroem</code></td>
+<td>176</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><code>kepler-prim</code></td>
+<td>171</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><code>waefler-prim</code></td>
+<td>64</td>
+<td>64 (100 %)</td>
+<td>64 (100 %)</td>
+</tr>
+<tr class="odd">
+<td><code>karman-nachlass</code></td>
+<td>56</td>
+<td>26 (46 %)</td>
+<td>24 (43 %)</td>
+</tr>
+<tr class="even">
+<td><strong>Gesamt</strong></td>
+<td><strong>773</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Ein Aussagendatensatz aus <code>eulerOO_concepts.duckdb</code>: Thema „der Äther (aether)“, Dokument <code>978-3-0348-0892-7</code>, Seite 79, Satz 5; Datum und Autor sind leer. Der Satz nennt Eulers Versuch, Newtons Gesetz vom umgekehrten Quadrat der Gravitation durch einen Mechanismus des Äthers zu erklären. Die Abfrage nach Äther-Aussagen über <code>eulerOO</code> und <code>enestroem</code> liefert 169 Zeilen in 19 ms (Median); Keplers <em>vis motrix</em> als Thema liefert 7 Zeilen an 6 Fundorten in 8 ms. Gesucht wird hier nach Behauptungen über ein Thema, über mehrere Sammlungen hinweg, nicht nach einem Wort.</p>
+<p>Eine Unterscheidung der Aussagen nach Typ – Befund, Feststellung einer Tatsache, Grundsatz, Schlussfolgerung, theoretische oder empirische Aussage – ist vorgeschlagen, aber nicht angelegt: Der Speicher kennt nur den Themenschlüssel, keine Spalte für den Typ (<strong>Lücke G10</strong>).</p>
+<p>Jede Aussage wird einer Quelle zugeordnet oder als theoretische Folgerung ausgewiesen: abgeleitet, ohne eigenen Fundort, mit benannter Schlussform. Normalisierung und Negation, mit denen sich logisch gleichwertige Aussagen erkennen lassen, sind als Fertigkeiten implementiert und tragen den Nadelaudit (<a href="#sec-methode" class="quarto-xref">Kapitel&nbsp;8</a>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Chronologie · Kármán-Nachlass</strong></p>
+<p>15 976 Briefe · 881 im Zeitraum 1930–1935 · 9 ms (Median)</p>
+<p>Abfrage auf <code>letters_resolved.date_when</code>; <code>pirckheimer</code>: 354 Briefe in 7 ms. Dasselbe Verfahren trägt die zeitliche Ordnung des Aussagenindex.</p>
+<p><code>results.json#P7</code> · 23. September 2026</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Wichtig
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Grenze · Felder der Aussagen</strong></p>
+<p>Datum in 2 von 306 Aussagen in <code>eulerOO</code> · Autor in 6 von 306</p>
+<p>Der Index läuft; die Felder, aus denen Chronologie und Doxographie gebaut werden, sind in drei Sammlungen leer. <code>waefler-prim</code> ist der Gegenfall: 64 Aussagen, alle mit Datum und Autor.</p>
+<p><code>results.json#P8</code> · 23. September 2026</p>
+</div>
+</div>
+<p>Aus Autor, Datum und Thema der Aussagen lassen sich <strong>Chronologien</strong> bilden – wer hat wann welche Aussage vertreten – und <strong>Doxographien</strong> – die Ordnung der Lehrmeinungen zu einem Thema über Autoren und Zeiten. Beide sind ableitbar; eine laufende Instanz liefert sie noch nicht (<strong>Lücke G11</strong>).</p>
+</section>
+<section id="sec-sprache" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-sprache"><span class="header-section-number">7</span> Die Sprachinstitution</h2>
+<p>Eine Fachkraft ist in der Sprache eines Kontextes kompetent, wenn ihre Gebrauchsregeln registriert, zitierbar und revidierbar sind. Nicht die Gewichte des Modells entscheiden, wie ein Terminus gebraucht wird; die aufgeschriebene <strong>Gebrauchsregel</strong> entscheidet, und sie lässt sich zitieren, diskutieren und korrigieren. Darin unterscheidet sich Regelfolgen von Konditionierung.</p>
+<section id="das-register-der-regeln" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="das-register-der-regeln">Das Register der Regeln</h3>
+<p>Das <strong>Register</strong> ist das Verzeichnis der Regeln, geordnet nach Geltungsbereich, Verbindlichkeit und Lebenszyklus. Eine Regel ist entweder blockierend – ein Text, der sie verletzt, wird nicht übernommen – oder beratend. Jede Regel trägt eine Begründung, ihre Quellstelle, ein positives und ein negatives Beispiel und ihren Lebenszyklus (Einreichung, Status). Revision und Widerruf tragen ebenfalls eine Begründung; kein Eintrag verschwindet still.</p>
+<div id="tbl-f5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;4: Bestand der Sprachinstitution (<code>lwgrammar_reference.duckdb</code>), Neuzählung vom 23. September 2026.
+</figcaption>
+<div aria-describedby="tbl-f5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bestand</th>
+<th>Zahl</th>
+<th>Tabelle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aktive Gebrauchsregeln</td>
+<td>34 (26 blockierend, 8 beratend)</td>
+<td><code>usage_rule_entry</code></td>
+</tr>
+<tr class="even">
+<td>Revidierte Regeln</td>
+<td>1</td>
+<td><code>status = revised</code></td>
+</tr>
+<tr class="odd">
+<td>Widerrufene Regeln</td>
+<td>6</td>
+<td><code>status = revoked</code></td>
+</tr>
+<tr class="even">
+<td>Bedeutungen relativ zu Autor, Werk und Zeit</td>
+<td>171</td>
+<td><code>term_sense</code></td>
+</tr>
+<tr class="odd">
+<td>Fundorte der Bedeutungen</td>
+<td>720</td>
+<td><code>sense_locus</code></td>
+</tr>
+<tr class="even">
+<td>Verankerte Abschnitte der Referenztexte</td>
+<td>4 287</td>
+<td><code>ref_section</code></td>
+</tr>
+<tr class="odd">
+<td>Referenzautoritäten</td>
+<td>11</td>
+<td><code>ref_authority</code></td>
+</tr>
+<tr class="even">
+<td>Stilprofile (drei Familien)</td>
+<td>56</td>
+<td><code>style_profile</code></td>
+</tr>
+<tr class="odd">
+<td>Zeilen des Lemmazensus</td>
+<td>271 094</td>
+<td><code>reg_lemma_census</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Ein Beispiel: Eine blockierende Regel lautet, dass die Grenzen der Plattform Grenzen der Evidenz und des Verfahrens sind, nie Verweigerungen. Ihr positives Beispiel: „Die Anfrage ist im vorliegenden Bestand nicht belegbar; die Sammlung ist <code>not_ready</code>.“ Ihr negatives Beispiel: „Das ist eine heikle Frage; ich kann Ihnen dabei nicht helfen.“ Eine andere Regel hält fest, dass nur Aussagen wahr oder falsch sind; eine dritte, dass ein Ziel keine Aussage ist, sondern die Beschreibung eines beabsichtigten Sachverhalts, der erreicht wird oder nicht.</p>
+<p>Die verankerten Referenzabschnitte stammen aus elf Primärwerken, darunter die <em>Philosophischen Untersuchungen</em>, <em>Über Gewissheit</em>, der <em>Tractatus</em> und die <em>Zettel</em>, jedes mit seiner Sigle und seinem Nummerierungsschema. Zitiert wird nach Sigle und Paragraph, etwa <span class="citation" data-cites="wittgensteinPU2022">(<a href="#ref-wittgensteinPU2022" role="doc-biblioref">Wittgenstein 2022</a>, PU §43)</span> oder <span class="citation" data-cites="wittgensteinUG2023">(<a href="#ref-wittgensteinUG2023" role="doc-biblioref">Wittgenstein 2023</a>, ÜG §96)</span>.</p>
+<p>Der Lebenszyklus einer Regel folgt einem festen Schema: Einreichung mit Begründung und Beleg, Prüfung gegen den vorhandenen Bestand, Aktivierung als blockierend oder beratend, gegebenenfalls Revision oder Widerruf mit begründeter Entscheidung. Ein widerrufener Eintrag bleibt mit Datum und Grund sichtbar. Die sechs widerrufenen Regeln dokumentieren, was erprobt und verworfen wurde; das Register ist die Spur der Selbstkorrektur, nicht nur der erreichten Einsicht.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Wörterbuch · <em>vis</em></strong></p>
+<p>6 Bedeutungen (<code>eulerOO</code>) · 8 Bedeutungen (<code>kepler-prim</code>) · 10 ms (Median)</p>
+<p>Erläuterung in der Art des <em>Oxford English Dictionary</em>, relativ zu Autor, Werk und Zeit, mit 14 bzw. 21 Zitaten. <code>karman-nachlass</code> hat 64 Kopfwörter ohne Zitat, <code>waefler-prim</code> 7.</p>
+<p><code>results.json#P4</code> · 23. September 2026</p>
+</div>
+</div>
+</section>
+<section id="sprachgebrauch-relativ-zu-autor-werk-und-zeit" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sprachgebrauch-relativ-zu-autor-werk-und-zeit">Sprachgebrauch relativ zu Autor, Werk und Zeit</h3>
+<p>Sprachdaten gelten nicht allgemein. Von Autor zu Autor, von Zeit zu Zeit und von Gegenstand zu Gegenstand wechseln Schreibweise und Wahl der Termini. Die Sprachinstitution führt deshalb jede Bedeutung mit Autor, Werk, Zeitraum und Diskussionszusammenhang (<a href="#tbl-kepler" class="quarto-xref">Tabelle&nbsp;1</a>), und sie führt für Autoren <strong>Stilprofile</strong>: die relativen Häufigkeiten ihrer häufigsten Wortformen, je Werk oder Textgruppe. Drei Familien sind angelegt: Kepler lateinisch (18 Profile, je Band der Gesamtausgabe mit Abfassungsjahr), Wittgenstein deutsch (7 Profile, je Werk) und Graßhoff deutsch (31 Profile, je Text mit mindestens 40 Sätzen). Zur Familie Graßhoff gehört ein Wortschatz aus 10 079 Lemmata, die in 80 341 Token belegt sind. Er zeigt, welche Wörter der Autor gebraucht und welche nicht.</p>
+<p>Der Abstand eines Textes zu einem Stilprofil wird mit Burrows’ Delta gemessen: dem mittleren Unterschied der standardisierten Häufigkeiten der häufigen Wortformen. Daraus folgt eine Frage an die Wissensbasis: Lässt sich ein Textstück ohne Angabe von Autor und Zeit allein nach seinen sprachlichen Merkmalen einem Autor, einem Werk oder einem Zeitfenster zuordnen?</p>
+</section>
+<section id="sec-situierung" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sec-situierung">Situierung eines Textstücks</h3>
+<p>Die Zuordnung eines Textstücks zu Autor, Werk und Zeitraum heißt hier <strong>Situierung</strong>. Sie wurde an drei Aufgaben gemessen, mit Textstücken von 250 bis 4 000 Token, die aus Werken genommen sind, deren Profil bei der Messung jeweils aus dem Vergleich herausgenommen war. Die Zuordnung gilt als unbestimmt, wenn der Abstand zum nächsten Autor sich von dem zum zweitnächsten um weniger als 0,2 unterscheidet.</p>
+<div id="tbl-situierung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-situierung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;5: Situierung von Textstücken ohne Angabe; jedes Werk wurde beim eigenen Test aus dem Vergleich herausgenommen (<code>LWgrammar/evaluate/situate/validation.json</code>, 23. September 2026).
+</figcaption>
+<div aria-describedby="tbl-situierung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aufgabe</th>
+<th>250 Token</th>
+<th>500</th>
+<th>1 000</th>
+<th>4 000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Autor: Wittgenstein oder Graßhoff (richtig / falsch / unbestimmt)</td>
+<td>29 / 3 / 3</td>
+<td>25 / 0 / 5</td>
+<td>25 / 0 / 3</td>
+<td>20 / 0 / 0</td>
+</tr>
+<tr class="even">
+<td>Werk: <em>Tractatus</em> oder <em>Untersuchungen</em> (richtig von 6)</td>
+<td>4</td>
+<td>6</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Jahr: Kepler, mittlerer Fehler in Jahren (Grundlinie 9,4)</td>
+<td>9,0</td>
+<td>8,8</td>
+<td>8,8</td>
+<td>9,6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Ab 500 Token wird kein Stück dem falschen Autor zugeordnet; kürzere Stücke werden eher als unbestimmt ausgewiesen als falsch zugeordnet. Die Unterscheidung zwischen dem <em>Tractatus</em> und den <em>Philosophischen Untersuchungen</em> trifft ab 500 Token in allen sechs Stichproben zu. Die Datierung eines Kepler-Stücks nach seinem Stil ist dagegen nicht besser als die Grundlinie, die jedem Stück das mittlere Jahr der übrigen Werke zuweist: Der mittlere Fehler liegt zwischen 8,8 und 9,6 Jahren gegen 9,4 der Grundlinie, der Median bei 1 000 Token bei 4,75 Jahren. Die frühen und späten Werke werden zur Mitte hin geschätzt, und die Gattung – Buch oder Brief – prägt das Profil stärker als das Jahr. Für die Datierung eines Kepler-Textes reicht der Stil allein nicht; sie braucht die datierten Bedeutungen der Termini, wie sie <a href="#tbl-kepler" class="quarto-xref">Tabelle&nbsp;1</a> für <em>anima</em> und <em>vis</em> zeigt.</p>
+</section>
+<section id="die-sprachinstitution-als-schutz-der-formulierung" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="die-sprachinstitution-als-schutz-der-formulierung">Die Sprachinstitution als Schutz der Formulierung</h3>
+<p>Jeder Text, den ein Sprachmodell für die Plattform formuliert – eine Antwort, eine Zusammenfassung, die Überarbeitung eines Absatzes –, kann drei Fehler machen: den Ausdruck verschlechtern, Termini verwechseln und Behauptungen erfinden. Die Sprachinstitution ist die einzige Quelle der Anweisungen, die ein Modell dagegen erhält, und die Instanz, die das Ergebnis prüft. Das Verfahren hat drei Schritte.</p>
+<p>Erstens legt eine <strong>Auftragsform</strong> fest, was eine Formulierungsaufgabe ist. Acht Auftragsformen sind registriert: einen Absatz überarbeiten, einen Absatz neu fassen, ein Dokument überarbeiten, einen Absatz kürzen, eine freie Anweisung des Autors ausführen, eine Antwort aus Belegen formulieren, einen Text erzeugen und den Text eines Notebooks formulieren. Jede Auftragsform verbindet ihren Auftrag mit einem <strong>Vertrag</strong>: Das Modell bewertet den Text nicht; es spricht nicht über den Text oder seinen Autor; es fügt keine Aussage hinzu und lässt keine fort; es wahrt das Register des Autors; es schließt jeden Satz ab.</p>
+<p>Zweitens stellt die Sprachinstitution für jede Aufgabe ein <strong>Kontextpaket</strong> zusammen: die Auftragsform mit ihrem Vertrag, die geltenden Regeln des Registers in Worten, die Termini des Dokuments und den Kontext aus Autor, Werk und Zeit. Nicht das ganze Register geht in jede Aufgabe ein; die Auswahl richtet sich nach der Aufgabe. Im Komparatistik-Versuch verbesserte ein auf die Aufgabe abgestimmtes Paket die inhaltliche Treue, während das volle Paket bei einem der geprüften Sprachmodelle in jeder Zelle versagte.</p>
+<p>Drittens prüft die Sprachinstitution jede Fassung gegen ihre Quelle. Die Messgrößen der Prüfung folgen den Regeln des Registers:</p>
+<ul>
+<li><strong>Erhalt der Aussagen:</strong> Folgt jede Aussage der Quelle aus der Fassung? Geprüft durch Folgerungsprüfung (NLI) je Satzpaar, in beiden Richtungen.</li>
+<li><strong>Hinzugefügte Aussagen:</strong> Behauptet die Fassung etwas, das die Quelle nicht sagt? Folgerungsprüfung von der Quelle zur Fassung.</li>
+<li><strong>Widersprüche:</strong> Widerspricht ein Satz der Fassung einem Satz der Quelle?</li>
+<li><strong>Bewertungen und Verstärkungswörter:</strong> Fügt die Fassung Werturteile oder Verstärker ein? Gezählt wird nach einem Lexikon, und nur, was die Quelle nicht schon enthält.</li>
+<li><strong>Rede über Text und Autor:</strong> Spricht die Fassung über „den Autor“ oder „diesen Text“, wo die Quelle es nicht tut?</li>
+<li><strong>Termini:</strong> Wird ein Terminus ersetzt oder variiert? Geprüft an Gruppen verwandter Termini: Eine Form tritt häufiger auf, die andere seltener.</li>
+<li><strong>Zahlen:</strong> Stimmen Zahlen und Zitierschlüssel mit der Quelle überein?</li>
+<li><strong>Wortschatz:</strong> Gebraucht die Fassung Wörter, die im Wortschatz des Autors nicht belegt sind? Geprüft nach Lemmatisierung; Komposita aus belegten Wörtern und die Termini des Dokuments gelten als belegt.</li>
+<li><strong>Register:</strong> Entfernt sich die Fassung weiter vom Stilprofil des Autors als die Quelle? Gemessen mit Burrows’ Delta.</li>
+<li><strong>Länge:</strong> Wird eine Überarbeitung länger, als ihre Auftragsform zulässt?</li>
+</ul>
+<p>Jede Messgröße ist einer Regel des Registers zugeordnet; ihr Befund nennt die betroffenen Wörter oder Sätze.</p>
+<p>Verletzt eine Fassung eine blockierende Regel, erhält das Modell einmal die Liste der Verletzungen mit den betroffenen Wörtern und Sätzen und fasst neu. Besteht auch die zweite Fassung nicht, wird sie mit ihrem Befund zurückgewiesen. Was besteht, ist ein Vorschlag; übernommen wird er erst, wenn der Autor ihn annimmt. <a href="#fig-f9" class="quarto-xref">Abbildung&nbsp;4</a> zeigt den Ablauf.</p>
+<div class="cell" data-fig-width="4.5" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-f9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-f9">flowchart TD
+  auftrag["Auftragsform mit Vertrag"] --&gt; paket["Kontextpaket"]
+  paket --&gt; modell["Sprachmodell formuliert"]
+  modell --&gt; pruefung["Prüfung gegen die Quelle"]
+  pruefung --&gt;|"besteht"| vorschlag["Vorschlag"]
+  pruefung --&gt;|"verletzt"| reparatur["Reparaturrunde mit Befund"]
+  reparatur --&gt; modell
+  pruefung --&gt;|"verletzt erneut"| abweisung["Zurückweisung mit Befund"]
+  vorschlag --&gt; autor["Autor entscheidet"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4: Schutz der Formulierung: Auftragsform und Kontextpaket vor dem Modell, Prüfung und eine Reparaturrunde nach dem Modell, Entscheidung beim Autor.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Den Anlass für diese Prüfung gab eine Lektoratsfassung dieses Aufsatzes vom September 2026. Ein Sprachmodell hatte auf die Anweisung, den Text zu verbessern, 137 Absätze verändert und dabei Bewertungen dessen eingefügt, was der Autor über die Plattform schreibt, eigene Wörter an die Stelle der Termini gesetzt und Aussagen hinzugefügt, die in keiner Quelle stehen. In einem der Absätze änderte sich nur der Zeilenumbruch; die Prüfung wurde an den übrigen 136 Paaren aus ursprünglichem und verändertem Absatz gemessen. Sie wies <strong>133 von 136</strong> Fassungen zurück (97,8 %). Jeder unveränderte Absatz, gegen sich selbst geprüft, bestand. Die häufigsten Befunde waren hinzugefügte Beiwörter (101 Fassungen), fremder Wortschatz (93), veränderte Bedingungs-, Mengen- und Verneinungswörter (90), einfache Wörter, die durch seltenere ersetzt wurden (84), und hinzugefügte Aussagen (56). Die drei Fassungen, die bestanden, tauschen Verben aus („ist“ wird „gilt als“, „halten“ wird „binden“) oder ersetzen im Titel „Wissensarbeit“ durch „Forschung“. Solche Verschiebungen erfasst die Prüfung noch nicht; über sie entscheidet der Autor.</p>
+<p>Auch eine Prüfung, die alles zurückweist, käme auf diese Quote. Deshalb wurde sie auch an Absätzen gemessen, die sie bestehen sollten: an den 16 Absätzen der vorliegenden Fassung, die alle Aussagen ihres Gegenstücks vom 9. September erhalten. Fünf bestanden. Die übrigen elf haben neu gemessene Zahlen, neue Zitate, gestrichene Wörter wie „noch“ und „kein“ oder neue Wörter wie „Fachkraft“. Das sind Änderungen des Autors, keine des Lektors; die Prüfung legt sie ihm vor, statt sie durchzulassen. Eine Prüfung dauert etwa drei Sekunden.</p>
+<p>Die Prüfung steht jedem Programm der Plattform zur Verfügung, das ein Sprachmodell formulieren lässt: dem Lektor, der Abfrage-Pipeline bei der Formulierung ihrer Antworten, jeder Fachkraft, deren Partitur einen Schritt der Prüfung unterstellt, und dem Notebook. Sie läuft als Dienst im eigenen Rechnerverbund. Ist dieser Dienst nicht erreichbar, meldet das aufrufende Programm einen Fehler; es formuliert nicht ungeprüft weiter.</p>
+</section>
+</section>
+<section id="sec-methode" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-methode"><span class="header-section-number">8</span> Die Methodeninstitution: computational epistemology</h2>
+<p>Die Methodeninstitution ist die zweite Institution der Plattform, gleichrangig mit der Sprachinstitution. Beide folgen demselben Bauprinzip: Regeln werden registriert, zitierbar gehalten und mit Lebenszyklus revidiert; keine Regel gilt, ohne dass sie ausgesprochen und überprüft werden kann. Was die Sprachinstitution für den Sprachgebrauch leistet, leistet die computational epistemology für das Schließen und Prüfen. Die Sprachinstitution sagt, was ein Satz sagt; die Methodeninstitution sagt, was die Aussage, die er ausdrückt, rechtfertigt. Der Beschluss bleibt beim Fachmann.</p>
+<p>Sätze drücken Aussagen aus, und nur Aussagen sind wahr oder falsch. Folgerung, Widerspruch und Unabhängigkeit bestehen zwischen Aussagen, nicht zwischen Sätzen. <strong>Rechtfertigung</strong> ist das methodische Kriterium: eine Beziehung zwischen einer Aussage und der Evidenz, die sie trägt, rekonstruiert als Argument mit Prämissen und benannter Schlussform.</p>
+<p>Retrieval – die Rückgabe eines Textausschnitts aus einem Korpus – kann eine Aussage nicht rechtfertigen. Ein Retrieval-Ergebnis sagt: „Dieser Satz kommt in der Sammlung vor.“ Das ist eine wahre Aussage über den Bestand, keine Rechtfertigung dessen, was der Satz behauptet. Darum gilt: erst der Index, dann die Formulierung. Und darum ist eine leere Antwort redlich, wenn der Bestand die Frage nicht trägt.</p>
+<p><strong>Grundlagenevidenz</strong> ist die direkte Referenz auf einen Fundort in der Wissensbasis: einen Satz, eine Messung, ein Dokument, das die Aussage trägt. <strong>Sekundärevidenz</strong> ist der Bezug auf ein Werk, das die Primärquelle kommentiert oder auswertet. Eine <strong>Referenzautorität</strong> – ein Referenzwerk, ein Fachlexikon, eine Norm – tritt als dritte Stufe ein: zitierbar und registriert, auch wo die Plattform kein Volltext-Exemplar besitzt. Die Stufen sind keine Rangordnung, sondern eine Klassifikation der Herkunft einer Behauptung. Aus Sekundärevidenz lässt sich keine Grundlagenevidenz ableiten, aus einer Referenzautorität kein Fundort in der Primärquelle erzeugen; beides wäre ein Kategorienfehler, verwandt dem Schluss von der Häufigkeit einer Behauptung auf ihre Wahrheit. Die Plattform sagt, auf welcher Stufe eine Behauptung steht und was hinzukommen müsste, damit sie die nächste erreicht.</p>
+<p><strong>Goldene Anfragen</strong> sind vorab festgelegte Fragen mit einem messbaren Orakel: einer Zahl, einem Wahrheitswert, einer Liste, die eindeutig bestimmt, ob die Antwort die Anfrage erfüllt. „Euler schrieb mehr als dreißig Abhandlungen zur Mechanik flüssiger Körper“ ist ein Orakel, wenn es durch Auszählung des Eneström-Verzeichnisses geprüft werden kann. „Euler schrieb wichtige Abhandlungen zur Mechanik“ ist keines; es ist eine Einschätzung, die ein Sprachmodell bestätigen oder bestreiten kann, ohne dass eine der beiden Antworten falsch wäre. Goldene Anfragen messen Befunde, keine Einschätzungen. Ein Register aller Behauptungen eines Textes mit Evidenzstufe, Schlussform und Urteil ist vorgesehen, aber nicht angelegt (<strong>Lücke G3</strong>).</p>
+<p>Das Protokoll einer Antwort macht sichtbar, welche Sätze zurückgerufen wurden, in welcher Reihenfolge, mit welchem Urteil und an welchem Fundort. Wer den Weg nicht sieht, kann die Antwort nicht beurteilen; wer die Antwort nicht beurteilen kann, muss der Fachkraft glauben, statt ihr zu vertrauen. Den Unterschied macht der Fundort.</p>
+<p>Logische Beziehungen über eine ganze Sammlung prüft der <strong>Nadelaudit</strong>: Er ruft über Satzeinbettungen die Kandidaten zurück und lässt das Sprachmodell über jeden Kandidaten urteilen. Ein Widerspruch wird nur angezeigt, wenn er in beiden Richtungen festgestellt ist.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Widerspruch · Nadelaudit</strong></p>
+<p>96,4 % lokalisiert bei 50 Kandidaten · 82 % richtiges Urteil · 250 Sonden</p>
+<p>Zwei Sammlungen, fünf Sprachen. <code>eulerOO-IVA</code>: 74,4 % richtige Urteile, 80,8 % richtig oder vertretbar; <code>karman-nachlass</code>: 89,6 % richtig. Rückruf 88 ms; Vollscan einer Sammlung 51 s (Kaltstart) bis 92 s (Median).</p>
+<p><code>evaluation.json</code> vom 31. August 2026, zitiert und nicht neu gelaufen (<code>results.json#P5</code>)</p>
+</div>
+</div>
+<p>Die Prüfung läuft auf zwei Zeitskalen, die nicht zu verwechseln sind. Die Operationen der Verzeichnisse – Lemma-Abfrage, Normalisierung der Schreibweisen, Suche gemeinsamer Vorkommen – laufen in Millisekunden, weil die Speicher auf demselben Rechner liegen. Der logische Scan – Einbettung der Anfrage, Rückruf der Kandidaten, Urteil über jeden Kandidaten – läuft in Sekunden. Die Millisekunden gelten dem Index, die Sekunden dem Urteil.</p>
+<p>Kausale Hypothesen werden mit dem regularitätstheoretischen Analysator aus <a href="#sec-forschung" class="quarto-xref">Kapitel&nbsp;3</a> bewertet. Eine Hypothese der Form „X ist eine Ursache von Y“ ist kein Befund, sondern eine zu prüfende Aussage. Geprüft wird, welche Cluster minimal hinreichend sind, welche Faktoren gemeinhin fehlen und welches Orakel die Hypothese widerlegen würde. Ein Befund des Analysators ohne Fundort ist eine Vermutung; ein Befund mit Fundort in Grundlagenevidenz ist ein Beleg.</p>
+<div id="tbl-f8b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f8b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;6: Zwei Institutionen, ein Bauprinzip.
+</figcaption>
+<div aria-describedby="tbl-f8b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Sprachinstitution</th>
+<th>Methodeninstitution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bestand</td>
+<td>Gebrauchsregeln, Bedeutungen, Stilprofile</td>
+<td>Schlussformen, Orakel, Evidenzstufen</td>
+</tr>
+<tr class="even">
+<td>Anwendung</td>
+<td>Prüfung jeder Formulierung</td>
+<td>Prüfung der Aussagen am Aussagenindex</td>
+</tr>
+<tr class="odd">
+<td>Lebenszyklus</td>
+<td>Revision, Widerruf, Begründung</td>
+<td>dieselbe Form; Partiturversionen: 0 Zeilen</td>
+</tr>
+<tr class="even">
+<td>Befund</td>
+<td>Regel eingehalten oder verletzt</td>
+<td>begründet, belegt, abgeleitet, Vermutung, Lücke</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="sec-orchestrierung" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-orchestrierung"><span class="header-section-number">9</span> Eine lesbare Orchestrierung</h2>
+<p>Jede Operation einer Fachkraft wird von einem Conductor aus einer <strong>Partitur</strong> gespielt. Die Partitur ist ein Dokument, das ein Verhalten der Plattform vollständig beschreibt: welche Schritte in welcher Folge laufen, welche Schlussform und welche Evidenz jeder Schritt verlangt und unter welcher Bedingung das Ziel erreicht ist. Sie ist lesbar für den Fachmann, der prüfen will, was die Fachkraft tut. Kein Verhalten liegt in einem Gewicht versteckt; was in der Partitur steht, kann korrigiert werden.</p>
+<p>Der <strong>Conductor</strong> ist die ausführende Instanz: Er liest die Partitur, entfaltet das Ziel in Teilziele, weist Ressourcen zu und hält das Protokoll. Der <strong>Harness</strong> ist sein Rahmen: Er verwaltet Laufzeiten, Fehler und die Beobachtung des Laufs. Partitur, Conductor und Harness sind inspizierbar und durch die Lernschleife revidierbar.</p>
+<p><strong>Zielentfaltung</strong> ist das Verfahren, mit dem der Harness ein Ziel – etwa „Prüfe, ob Eulers Hydrodynamik mit der heutigen Hydraulik verträglich ist“ – in Teilziele auffaltet, die je an eine registrierte Partitur gebunden sind: Quellen finden, Argumente rekonstruieren, kausale Hypothesen bewerten, Widersprüche prüfen. Ein Fehlschlag durchläuft eine Analyse seiner Ursache; ihr Befund verfeinert das Repertoire der Partituren.</p>
+<p><strong>Lernschleifen</strong> laufen in zwei Formen. Die Schleife für Instruktionen – Annotation, Kandidat, Vergleich gegen eine zuvor gemessene Grundlinie, Beförderung mit Lebenszyklus – hat 39 Instruktionsversionen erzeugt (30 aktiv, 6 zurückgewiesen, 3 abgelöst). Die Schleife für Partituren folgt derselben Logik für das Verhalten einer ganzen Fachkraft; sie ist implementiert, hat aber noch keine Version erzeugt. 1 880 Annotationen liegen im Lernspeicher (<code>assessment.duckdb</code>, 23. September 2026).</p>
+</section>
+<section id="sec-notebook" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-notebook"><span class="header-section-number">10</span> Famulus Notebook: ein Medium der Autorenunterstützung</h2>
+<p>Die Partitur beschreibt, wie eine Frage beantwortet wird; der Conductor spielt sie. Beides braucht eine Form, in der der Forscher seine Fragen stellt, die Antworten aufbewahrt, sie prüft und mit anderen teilt. Diese Form ist das <strong>Famulus Notebook</strong> <span class="citation" data-cites="grasshoff2026famulusnotebook">(<a href="#ref-grasshoff2026famulusnotebook" role="doc-biblioref">Graßhoff 2026</a>)</span>. Es ist die Form, in der Forscher Famulus für ihre Forschung gebrauchen: für Fragen an die Sammlungen, für die Prüfung von Ergebnissen und für die Arbeit an Famulus selbst.</p>
+<section id="ein-forschungsschritt-ist-ein-block" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="ein-forschungsschritt-ist-ein-block">Ein Forschungsschritt ist ein Block</h3>
+<p>Ein Notebook ist ein Quarto-Dokument mit Fließtext und Blöcken. Ein <strong>Block</strong> ist ein Codeblock der Sprache <code>famulus</code>. Er beginnt mit einer Präambel, die festlegt, welche Sammlung gilt und welche Partitur gespielt wird, und endet mit der Frage in gewöhnlicher Sprache. Die Präambel heißt im Notebook selbst „Partitur“: Sie ist die Stelle, an der der Block die Partitur des Registers aufruft und mit Werten versieht. Die Bedingung, unter der die Frage beantwortet ist, ist das <strong>Ziel</strong> des Blocks.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{famulus}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">id: briefpartner-zahl</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">collections: [pirckheimer]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">years: {from: 1520, to: 1530}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">subtask: correspondence-count</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">golden: golden-c782fab71c</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">oracle:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">  n_correspondents: 75</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">Wie viele Briefpartner hatte Pirckheimer zwischen 1520 und 1530?</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ein Block darf eine Erwartung mitführen, gegen die das Ergebnis geprüft wird: das <strong>Oracle</strong>, eine Zahl oder Liste, die unabhängig vom Lauf bestimmt wurde, etwa durch eine Abfrage des Briefregisters. Stimmt das Ergebnis mit dem Oracle überein, lautet das Urteil „bestanden“. Hat ein Block kein Oracle, lautet es „ohne Oracle“: Der Lauf hat eine Antwort geliefert, aber niemand hat sie geprüft. Ein „bestanden“ ohne Oracle gibt es nicht.</p>
+<p>Jeder Lauf schreibt neben das Notebook ein <strong>Log</strong>: den Ablauf der Partitur (<code>trace.json</code>), das Ergebnis mit seiner Herkunft (<code>result.json</code>), den Bericht (<code>report.json</code>), das Urteil (<code>verdict.json</code>) und die Liste der Artefakte. Die Herkunft nennt die Partitur, das Modell, die Sammlungen, die Dauer und gegebenenfalls den Rechner, der geantwortet hat. Notebook und Log bilden zusammen das <strong>Notebook-Paket</strong>, einen gewöhnlichen Ordner. Wer den Ordner weitergibt, gibt Frage, Antwort und Prüfung zusammen weiter.</p>
+<p>Zwischenergebnisse bauen sich auf diese Weise auf. Ein späterer Block kann ein Artefakt eines früheren Blocks über einen <strong>Querverweis</strong> aufnehmen – etwa die Liste der Briefpartner als Grundlage einer Frage nach ihren Wohnorten. Der Querverweis nennt Notebook, Block und Artefakt; der Lauf hält fest, welche Fassung des Artefakts er benutzt hat. So entsteht aus einzelnen Forschungsschritten ein Zusammenhang, dessen Glieder je für sich geprüft und aufeinander bezogen sind.</p>
+<p>Der Viewer des Notebooks zeigt jedes Ergebnis in einer Form, die zu seinem Typ passt: als Kennzahl, Liste, hierarchische Tabelle, Tabelle, Belegliste, Textkarten oder Netz. Er zeigt das Urteil, die Herkunft und auf Wunsch den Ablauf. Eine neue Frage wird im Viewer eingegeben, landet als Block im Notebook <code>journal</code> und läuft sofort; sie bleibt samt Antwort und Ablauf erhalten. Die geprüften Fragen der Abfrage-Pipeline, die goldenen Anfragen, stehen als eigenes Notebook bereit, ein Block je Anfrage mit ihrem Oracle.</p>
+</section>
+<section id="lokale-arbeit" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="lokale-arbeit">Lokale Arbeit</h3>
+<p>Ein Notebook-Paket liegt auf dem Rechner des Autors. Es wird dort bearbeitet, gespeichert und versioniert wie jedes andere Dokument. Der Notebook-Dienst des Mac Studio führt am 23. September 2026 acht Notebooks: sechs Beispiele (Kármán-Korrespondenz, Kepler zu <em>lex</em> und <em>natura</em>, Kepler zu <em>anima</em> und <em>vis</em>, die Briefpartner Pirckheimers, Schöner und die Saphea, die Formulierungsprüfung am vorliegenden Aufsatz), die goldenen Anfragen und das Journal. Blöcke, die nur eine Datenbank lesen oder ein Artefakt holen, brauchen weder den Conductor noch die Abfrage-Pipeline; sie laufen auch auf einem Rechner, der selbst keine Sammlung trägt.</p>
+</section>
+<section id="arbeit-in-der-gruppe" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arbeit-in-der-gruppe">Arbeit in der Gruppe</h3>
+<p>Die Sammlungen liegen nicht auf jedem Rechner. Ein Notebook kann deshalb einen anderen Famulus-Dienst nennen und dort lesen oder rechnen lassen. Ein solcher Dienst heißt <strong>Peer</strong>; der Eintrag, der ihn mit Namen und Adressen bekannt macht, heißt <strong>Verknüpfung</strong>. Die Adressen dürfen im lokalen Netz, in einem VPN oder im privaten Netz des Rechnerverbunds liegen; der Rechner probiert sie der Reihe nach und nimmt die erste, die antwortet.</p>
+<p>Über eine Verknüpfung tut ein Block drei Dinge. Er liest eine Datenbank einer fernen Sammlung – nur lesend, mit höchstens 5 000 Zeilen und 30 Sekunden je Abfrage. Er lässt den ganzen Block auf dem fernen Rechner laufen, der dazu seine eigene Sammlung und seine eigene Abfrage-Pipeline benutzt. Oder er übernimmt ein Artefakt aus einem fernen Notebook und legt daneben ab, woher es kam und wann es geholt wurde. Jede Antwort trägt den Namen des Peers, der sie geliefert hat.</p>
+<p>Auf diese Weise teilt eine Gruppe ein gemeinsames Verzeichnis von Quellen und Referenzdaten, ohne es zu kopieren: Die Sammlungen bleiben auf dem Rechner, der sie trägt, und jedes Mitglied arbeitet mit ihnen aus seinem eigenen Notebook. Wer Frage und Ergebnis eines anderen übernimmt, übernimmt auch deren Herkunft. <a href="#fig-notebook" class="quarto-xref">Abbildung&nbsp;5</a> zeigt die Anordnung.</p>
+<div class="cell" data-fig-width="5.5" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-notebook" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-notebook-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-notebook">flowchart LR
+  a1["Paket der Autorin A"] --&gt;|"liest Sammlung"| peer["Peer mit Notebook-Dienst"]
+  a2["Paket des Autors B"] --&gt;|"lässt Block rechnen"| peer
+  a2 --&gt;|"übernimmt Artefakt mit Herkunft"| a1
+  peer --&gt; pdai["Gemeinsames Verzeichnis der Quellen"]
+  a1 --&gt; lektor["Lektor"]
+  a2 --&gt; lektor
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-notebook-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5: Notebooks in einer Gruppe: Jede Autorin und jeder Autor arbeitet im eigenen Paket; gelesen und gerechnet wird über Verknüpfungen auf dem Rechner, der die Sammlungen trägt. Kommentare kommen über Freigabe-Links des Lektors.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Der Zugang ist geregelt. Eine Anfrage vom eigenen Rechner braucht kein Token; jede andere Anfrage braucht ein Token, das in einer Datei mit eingeschränkten Rechten liegt und nie in einem Notebook oder Log erscheint. Ohne gültiges Token antwortet der Dienst mit 401. Anmerkungen an den Lernzyklus und die Sitzung des Besitzers im Lektor bleiben dem eigenen Rechner vorbehalten, auch mit Token. Wer an einem Text mitwirken soll, ohne ihn zu überarbeiten, erhält einen Freigabe-Link des Lektors; er kann Kommentare setzen, aber keine Fassung übernehmen.</p>
+<p>Am 23. September 2026 wurde die Arbeit über eine Verknüpfung zwischen zwei Rechnern geprüft: einem Mac Studio, der die Sammlungen trägt, und einem Mac mini ohne Sammlung, ohne Conductor und ohne Abfrage-Pipeline.</p>
+<div id="tbl-zwei-rechner" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-zwei-rechner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;7: Prüfung der Verknüpfung zwischen zwei Rechnern, 23. September 2026 <span class="citation" data-cites="grasshoff2026famulusnotebook">(<a href="#ref-grasshoff2026famulusnotebook" role="doc-biblioref">Graßhoff 2026</a>)</span>; die Werte der Lesung und des Laufs sind aus den Logs der Pakete auf dem Mac mini nachgelesen.
+</figcaption>
+<div aria-describedby="tbl-zwei-rechner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Probe vom Mac mini gegen den Mac Studio</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Auskunft des Peers ohne Token</td>
+<td>401</td>
+</tr>
+<tr class="even">
+<td>Auskunft des Peers mit falschem Token</td>
+<td>401</td>
+</tr>
+<tr class="odd">
+<td>Auskunft des Peers mit Token</td>
+<td>200, 0,119 s</td>
+</tr>
+<tr class="even">
+<td>Lesen des Pirckheimer-Registers ohne Token</td>
+<td>401</td>
+</tr>
+<tr class="odd">
+<td>Anmerkung an den Lernzyklus mit Token</td>
+<td>403 (nur vom eigenen Rechner)</td>
+</tr>
+<tr class="even">
+<td>Ferne Lesung: Briefe nach Richtung</td>
+<td>45 von Pirckheimer, 309 an ihn; 352 ms</td>
+</tr>
+<tr class="odd">
+<td>Ferner Lauf: Briefpartner 1520–1530</td>
+<td>75, Oracle 75, bestanden; 8 954 ms, davon 8 828 ms auf dem Peer</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Der Test fand fünf Fehler, die behoben sind; das Begleitpapier beschreibt sie. Eine Beobachtung betrifft die Formulierung, nicht die Verknüpfung: Beim fernen Lauf, der das Oracle 75 bestand, lautete der Satz, den die Abfrage-Pipeline zur Zahl formulierte, „No data in scope“. Die Zahl war richtig, der Satz widersprach ihr. Das Oracle prüft die Zahl, nicht den Satz. Den Satz zu prüfen ist die Aufgabe der Formulierungsprüfung der Sprachinstitution, die auch für die Texte eines Notebooks gilt.</p>
+</section>
+<section id="von-famulus-geprüft" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="von-famulus-geprüft">Von Famulus geprüft</h3>
+<p>Ein Notebook enthält drei Arten von Prüfung. Das Oracle prüft das Ergebnis eines Blocks gegen einen unabhängig bestimmten Wert. Der Querverweis hält fest, welche Fassung eines Artefakts ein späterer Block benutzt hat, sodass eine Änderung am früheren Block sichtbar wird. Und die Formulierungsprüfung prüft jeden Text, den ein Block erzeugt, gegen die Regeln des Registers im Kontext des Autors. Ein Block nennt dazu in seiner Präambel die Auftragsform und den Kontext; das Ergebnis der Prüfung erscheint neben dem Urteil.</p>
+<p>Die Notebooks einer Gruppe hängen über Querverweise zusammen. Ob sie miteinander <strong>konsistent</strong> und <strong>kohärent</strong> sind, prüft <code>famulus-notebook check</code> über alle Pakete eines Rechners. Die Prüfung meldet fünf Arten von Befund: einen Block, dessen Eingaben – Präambel, Anweisung oder eine Datei, die er liest – sich seit dem letzten Lauf geändert haben; ein Urteil, das fehlt oder nicht bestanden ist; einen Querverweis ohne Ziel; einen Absatz, der einer Regel der Sprachinstitution widerspricht; und zwei Blöcke, die dieselbe Lesung derselben Datei vornehmen und für denselben Wert verschiedene Zahlen melden. Am 23. September 2026 meldete sie über acht Pakete fünf Befunde. Einer betrifft einen Block des Kármán-Notebooks, der in drei Läufen einmal bestand; in den beiden anderen las die Analyse der Frage „Koordinaten“ als Empfänger der Briefe. Noch nicht in Betrieb sind die Prüfung über die Pakete verschiedener Peers und die Prüfung, ob ein Terminus in allen Notebooks im selben Sinn gebraucht wird (<strong>Lücke G12</strong>).</p>
+</section>
+<section id="vom-notebook-zur-publikation" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="vom-notebook-zur-publikation">Vom Notebook zur Publikation</h3>
+<p>Ein Notebook ist ein Quarto-Dokument und wird wie jedes andere zu HTML und PDF gesetzt; die Blöcke erscheinen dabei mit ihren Ergebnissen, Urteilen und ihrer Herkunft. Die Ergebnisse eines Notebooks können deshalb in einen Aufsatz eingehen, ohne abgeschrieben zu werden: Der Aufsatz zitiert das Paket, und das Paket zeigt, wie jedes Ergebnis entstand. Forschungsergebnisse werden auf diesem Weg der Gemeinschaft schnell zugänglich, und wer sie aufnimmt, kann jeden Schritt wiederholen. Die sechs Beispielnotebooks und das Begleitpapier <span class="citation" data-cites="grasshoff2026famulusnotebook">(<a href="#ref-grasshoff2026famulusnotebook" role="doc-biblioref">Graßhoff 2026</a>)</span> sind Fälle dieser Form.</p>
+</section>
+</section>
+<section id="sec-partituren-gemeinsam" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-partituren-gemeinsam"><span class="header-section-number">11</span> Partituren gemeinsam nutzen</h2>
+<p>Eine Partitur spielt für Famulus die Rolle, die ein Stilpaket im Textsatzsystem LaTeX spielt. Ein LaTeX-Dokument lädt ein Paket mit seinem Namen und erhält damit eine benannte, versionierte und wiederverwendbare Beschreibung dessen, wie etwas gesetzt wird. Ein Block eines Notebooks ruft eine Partitur mit ihrem Namen auf und erhält damit eine benannte, versionierte und wiederverwendbare Beschreibung dessen, wie eine Frage beantwortet wird. Wie ein Paket nimmt die Partitur Einstellungen entgegen: Eine <strong>Setting</strong> versieht ihre freien Eingaben mit Werten, etwa Sammlung und Zeitraum.</p>
+<section id="was-besteht" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="was-besteht">Was besteht</h3>
+<p>Das Register der Partituren (<code>partitur_register.duckdb</code>) verzeichnet am 23. September 2026 50 Partituren mit 32 Eingaben, 4 Settings und 331 Zielen. Die Partituren der Fachkräfte liegen als 47 Dokumente <code>agent-store/*/partitur.yaml</code> im Orchester; die Partitur der Abfrage-Pipeline liegt unter <code>pdai/skills/query/partitur/partitur.yaml</code>. Die Versionierung der Partituren mit einem Vergleich gegen die zuvor gemessene Gesamtleistung ist implementiert, hat aber noch keine Version erzeugt. Die goldenen Anfragen sind der Qualitätsnachweis einer Partitur: Eine Partitur gilt für eine Frage in dem Maß, in dem sie deren Oracle besteht. Über eine Verknüpfung kann ein Block eine Partitur auf dem Rechner spielen lassen, der sie im Register führt, ohne sie zu kopieren.</p>
+</section>
+<section id="was-beabsichtigt-ist" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="was-beabsichtigt-ist">Was beabsichtigt ist</h3>
+<p>Beabsichtigt ist ein öffentliches Repositorium der Partituren mit einem systematischen Katalog, nach dem Vorbild der gemeinschaftlichen Paketarchive von Programmiersprachen, Textsatz- und Dokumentationssystemen: CTAN für LaTeX, PyPI für Python, die Erweiterungen von Quarto. Ein Eintrag im Katalog soll nennen: Kennung, Version, Autor, Lizenz, Abhängigkeiten von anderen Partituren, die benötigten Sammlungen und Modelle sowie die goldenen Anfragen mit ihrem aufgezeichneten Urteil. Das Repositorium besteht noch nicht (<strong>Lücke G13</strong>).</p>
+<p>Aus dieser Anordnung ergeben sich drei Folgen. Erstens beruht der Qualitätsnachweis einer Partitur auf ihren goldenen Anfragen und deren Oracles, nicht auf dem Ruf ihres Autors. Zweitens läuft die sprachliche Prüfung jeder Formulierung einer Partitur über die Sprachinstitution, gleich wer die Partitur geschrieben hat. Drittens nennt die Herkunft jedes Ergebnisses die Partitur und ihre Version, sodass sich feststellen lässt, welches Ergebnis mit welcher Fassung entstand. Unter diesen Bedingungen wachsen die Gebrauchsweisen der Partituren und ihre gemessene Effizienz mit der Gemeinschaft ihrer Nutzer, und mit ihnen wachsen die Nutzbarkeit und die Reichweite des Systems.</p>
+</section>
+</section>
+<section id="sec-anwendung" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="sec-anwendung"><span class="header-section-number">12</span> Anwendungsfelder</h2>
+<p>Die Anwendungsfelder folgen einer Form: Bedarf, Fachkraft, Ausführung, Spur, Grenze. Wo eine laufende Instanz besteht, wird sie genannt; wo keine besteht, wird das Feld als Entwurf gekennzeichnet.</p>
+<p><strong>Wissenschaftliche Forschung.</strong> Die Editionsviewer stellen die erschlossenen Sammlungen im Rechnerverbund bereit. Eine Anfrage nach dem Lemma <em>vis</em> in den lateinischen Sätzen der Kepler-Sammlung liefert 108 Formen mit 1 601 Token in 52 ms, zeigt ihre Satzkontexte, ordnet die Sätze nach Datum und fragt das Wörterbuch nach den Unterschieden des Gebrauchs. Die <strong>Spur</strong> – die vollständige Aufzeichnung aller Schritte einer Operation – liegt im Log der Anfrage; der Gelehrte kann jeden Schritt nachvollziehen.</p>
+<p><strong>Rechtsarbeit.</strong> Die Agenda-Pipeline verarbeitet den Scan eines Posteingangs über die Texterkennung zu einer strukturierten Aktennotiz und einer Fortschreibung der Strategie. Jede Akte trägt Datum, Herkunft und Fundort; keine Personendaten verlassen den Rechnerverbund. Das Verfahren ist als Instanz in Betrieb; beschrieben ist die Form, nicht ein Mandant.</p>
+<p><strong>Berichtswesen und Profile.</strong> Die INQUA-Pipeline verarbeitet Besprechungstranskripte zu Hypothesen und Profildokumenten in einem dreiphasigen Lernzyklus aus Annotation, Vergleich und Beförderung. Die Pipeline läuft produktiv; Personendaten bleiben im eigenen Rechnerverbund.</p>
+<p><strong>Dokumenterfassung.</strong> Famulus Repro, die Reproduktionsanwendung für iPhone und Mac, führt ein Seitenbild durch die Prüfungen einer Geometrie-Pipeline – Entzerrung, Korrektur der Schräglage, Ortung des Falzes, Aufteilung der Seiten, Prüfung der Auflösung – und übergibt das korrigierte Seitenbild der Transkription. Seiten unter 200 dpi erhalten ein ausdrückliches Kennzeichen, keinen stillen Ausfall.</p>
+<p><strong>Technische Aufsicht und Ingenieurwesen.</strong> In der Sonnenuhr-Pipeline wird ein Artefakt gescannt; aus dem Scan werden Primitive rekonstruiert; ein Modell der Uhr wird an den Primitiven kalibriert; das Konsensurteil über die geographische Breite trägt den Fundort seiner Messdaten. Jeder Schritt ist aus der Objektakte wiederholbar.</p>
+<p><strong>Historische Quelle und Ingenieuraufgabe.</strong> Eulers Abhandlungen zur Wasserführung in Röhren – <code>E206</code> <em>Sur le mouvement de l’eau par des tuyaux de conduite</em> (1749), 33 Seiten; <code>E207</code> <em>Discussion plus particulière de diverses manières d’élever de l’eau par le moyen des pompes</em> (1749), 31 Seiten; <code>E208</code> <em>Maximes pour arranger le plus avantageusement les machines destinées à élever de l’eau par le moyen des pompes</em> (1750), 39 Seiten – liegen in <code>enestroem</code> erschlossen. Die Fachkraft liest die Quelle, stellt Eulers Rechnung und Bauanweisung heraus, vergleicht die Schlussform mit dem heutigen Stand der Hydraulik und entwirft daraus eine Aufgabe für den Ingenieur von heute. Ein Bezug auf die Wasserkünste von Sanssouci wird ohne Sekundärquelle nicht behauptet (<strong>Lücke G8</strong>). <a href="#fig-f11" class="quarto-xref">Abbildung&nbsp;6</a> zeigt eine Seite aus <code>E206</code>.</p>
+<div id="fig-f11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/F11-e206-p004-facsimile-xml.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6: <code>E206</code> aus dem Eneström-Werkverzeichnis, <code>pidx</code> 004, §11–12 mit Figur 1 (Pumpenkörper). Links das Faksimile, rechts die strukturierte Buchseite. Aufgenommen am 9. September 2026. Der Figurenausschnitt umfasst neben Fig. 1 einen Streifen des umlaufenden Textes; die Bildgrenze wurde bei der Erschließung der Seite zu weit gezogen.
+</figcaption>
+</figure>
+</div>
+<p><strong>Wissenschaftskommunikation.</strong> ai-reporter verarbeitet Vortragsaufnahmen zu strukturierten Akten: Transkript, Thesen, Belege und eine Zusammenfassung zur Begutachtung. Das Verfahren ist als Instanz in Betrieb.</p>
+<p><strong>Beratung und Projektleitung.</strong> Eine Fachkraft stellt eine Entscheidungsvorlage aus verschiedenen Quellen zusammen und belegt jede Behauptung mit Fundort. Dieses Feld ist als Entwurf formuliert; eine Instanz läuft nicht (<strong>Lücke G2</strong>).</p>
+<p>In allen Feldern arbeitet die Fachkraft als <strong>Erläuterer</strong>: Sie übersetzt (Eulers Latein liegt mit englischer Übersetzung vor), erläutert Termini in der Art des <em>Oxford English Dictionary</em> mit Bedeutung, Beleg und Zeit, prüft Argumente auf Schlüssigkeit und legt verborgene Annahmen frei, und sie recherchiert den Bestand der Bibliotheken als das gemeinsame Wissen der gelehrten Gemeinschaft. Sie urteilt nicht.</p>
+</section>
+<section id="sec-mass" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="sec-mass"><span class="header-section-number">13</span> Das Maß</h2>
+<p>Die Plattform hat keine Inhaltsmoderation und keinen Themenfilter. Keine Frage ist ausgeschlossen; ihre Grenzen sind Grenzen der Evidenz und des Verfahrens, nie Verweigerungen. Das Maß ist das, das die Wissenschaft an sich selbst anlegt: wissenschaftliche Qualität, die Standards der Gelehrsamkeit, Redlichkeit und Wahrheit. Daneben steht, gleichen Rangs, wissenschaftliche Inspiration und Kreativität: ob ein Gedanke neue Fragen und neue Verfahren möglich macht.</p>
+<p>Eine Aussage steht, wenn sie gerechtfertigt ist: wenn eine Adresse vorliegt, unter der die Evidenz zugänglich ist und geprüft werden kann. Sie ist eine Vermutung, solange die Rechtfertigung aussteht, und eine Lücke, wenn die Evidenz fehlt. Jedes Urteil ist an einer Adresse kritisierbar. Die Lücken, die am Ende dieses Textes stehen, benennen, was fehlt, und damit zugleich, was hinzukommen müsste, damit die Behauptung stünde.</p>
+<p>Das Urteil bleibt beim Fachmann. Die Fachkraft liefert Material, Spur und das Verzeichnis dessen, was sie nicht begründen konnte. Sie urteilt nicht darüber, ob Keplers <em>vis motrix</em> als physikalische Hypothese standhält; sie zeigt, was Kepler in welchen Jahren damit behauptet hat, und legt die Schlussformen frei, unter denen die Behauptung stehen oder fallen würde.</p>
+</section>
+<section id="gemessene-leistung" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="gemessene-leistung">Gemessene Leistung</h2>
+<p>Die Werte dieses Abschnitts sind Messungen am laufenden Verbund vom 23. September 2026 (Mac Studio, DuckDB 1.5.3, 20 Wiederholungen je Sonde, Kaltstart und Median getrennt; <code>runs/2026-09-23-performance/results.json</code>). Gezählt wird im kanonischen Modus, also je Lemma ohne Varianten, und ein Satz ist durch das Tripel <code>(doc_id, pidx, sent_idx)</code> bestimmt. Die Tafel steht nach dem Argument, weil die vorangehenden Abschnitte zeigen, was die Zahlen bedeuten.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Schreibweisen · Euler Opera Omnia</strong></p>
+<p>56 Formen · 4 268 Belege · 19 ms (Median)</p>
+<p>Weg über die Eigennamen der Satzanalyse auf <code>eulerOO_stanza.duckdb</code> (2 217 042 Token), Sonde <code>bernoul%</code>. Die erkannten Entitätsspannen derselben Sammlung ergeben 37 Formen in 11 ms; die automatische Erkennung ist dort dünn (1 567 Spannen auf 6 684 Seiten), der Weg über die Eigennamen trägt.</p>
+<p><code>results.json#P1</code> · 23. September 2026</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Flexion · Eneström</strong></p>
+<p>34 Formen von <em>vis</em> · 8 925 Token · 6 500 Sätze · 34 ms (Median)</p>
+<p>Kanonischer Zählmodus, alle Sprachen. <em>motus</em>: 20 Formen, 8 439 Token, 35 ms. <em>lex</em> und <em>natura</em> im selben Satz: 70 Sätze, 38 ms.</p>
+<p><code>results.json#P2</code> · <code>#P3</code> · 23. September 2026</p>
+</div>
+</div>
+<div id="tbl-f0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;8: Messungen vom 23. September 2026; der Nadelaudit ist aus dem Lauf vom 31. August 2026 zitiert.
+</figcaption>
+<div aria-describedby="tbl-f0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Leistung</th>
+<th>Korpus</th>
+<th>Ergebnis</th>
+<th>Zeit</th>
+<th>Fundort</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Schreibweisen</td>
+<td><code>eulerOO</code> Eigennamen <code>bernoul%</code></td>
+<td>56 Formen, 4 268 Belege</td>
+<td>19 ms</td>
+<td><code>#P1</code></td>
+</tr>
+<tr class="even">
+<td>Schreibweisen</td>
+<td><code>enestroem</code> Bernoulli / Maupertuis</td>
+<td>30 / 12 Formen</td>
+<td>25 / 23 ms</td>
+<td><code>#P1</code></td>
+</tr>
+<tr class="odd">
+<td>Schreibweisen</td>
+<td><code>kepler-prim</code> Tycho / Brahe</td>
+<td>108 / 71 Formen</td>
+<td>33 / 38 ms</td>
+<td><code>#P1</code></td>
+</tr>
+<tr class="even">
+<td>Schreibweisen</td>
+<td><code>karman-nachlass</code> Prandtl / Guggenheim</td>
+<td>85 / 192 Formen</td>
+<td>24 / 26 ms</td>
+<td><code>#P1</code></td>
+</tr>
+<tr class="odd">
+<td>Flexion</td>
+<td><code>enestroem</code> <em>vis</em></td>
+<td>34 Formen, 8 925 Token</td>
+<td>34 ms</td>
+<td><code>#P2</code></td>
+</tr>
+<tr class="even">
+<td>Flexion</td>
+<td><code>kepler-prim</code> <em>vis</em> (lat.)</td>
+<td>108 Formen, 1 601 Token</td>
+<td>52 ms</td>
+<td><code>#P2</code></td>
+</tr>
+<tr class="odd">
+<td>Flexion</td>
+<td><code>karman-nachlass</code> <em>turbulence</em> / <em>wing</em></td>
+<td>1 870 / 3 775 Token</td>
+<td>140 / 127 ms</td>
+<td><code>#P2</code></td>
+</tr>
+<tr class="even">
+<td>Gemeinsames Vorkommen</td>
+<td><code>enestroem</code> <em>lex</em> und <em>natura</em></td>
+<td>70 Sätze</td>
+<td>38 ms</td>
+<td><code>#P3</code></td>
+</tr>
+<tr class="odd">
+<td>Gemeinsames Vorkommen</td>
+<td><code>kepler-prim</code> <em>lex</em> und <em>natura</em> (lat.)</td>
+<td>44 Sätze</td>
+<td>46 ms</td>
+<td><code>#P3</code></td>
+</tr>
+<tr class="even">
+<td>Wörterbuch</td>
+<td><code>eulerOO</code> / <code>kepler-prim</code> <em>vis</em></td>
+<td>6 / 8 Bedeutungen</td>
+<td>10 ms</td>
+<td><code>#P4</code></td>
+</tr>
+<tr class="odd">
+<td>Chronologie</td>
+<td><code>karman</code> 1930–1935; <code>pirckheimer</code></td>
+<td>881 von 15 976; 354</td>
+<td>9 / 7 ms</td>
+<td><code>#P7</code></td>
+</tr>
+<tr class="even">
+<td>Aussagen</td>
+<td>fünf Sammlungen; Äther</td>
+<td>773; 169 Zeilen</td>
+<td>8 / 19 ms</td>
+<td><code>#P8</code></td>
+</tr>
+<tr class="odd">
+<td>Widerspruch</td>
+<td>Nadelaudit, 250 Sonden</td>
+<td>96,4 % bei 50 Kand.; 82 % richtig</td>
+<td>88 ms; 51–92 s</td>
+<td><code>#P5</code></td>
+</tr>
+<tr class="even">
+<td>Situierung</td>
+<td>Wittgenstein oder Graßhoff, 4 000 Token</td>
+<td>20 von 20 richtig</td>
+<td>–</td>
+<td><code>validation.json</code></td>
+</tr>
+<tr class="odd">
+<td>Formulierungsprüfung</td>
+<td>136 veränderte Absätze; 16 erhaltende Absätze</td>
+<td>133 zurückgewiesen; 5 von 16 bestanden; 0 Fehlalarme bei unveränderten Absätzen</td>
+<td>etwa 3 s je Prüfung</td>
+<td><code>golden/famulus-plattform.json</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Wichtig
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Grenze · Nadelaudit und Bestand</strong></p>
+<p>Vollscan einer Sammlung: 51 s (Kaltstart) bis 92 s (Median)</p>
+<p>Die Millisekunden der Verzeichnisse gelten nicht für den vollen logischen Scan. <code>waefler-prim</code> ist <code>partial</code> (9 Dokumente); die Lemma-Sonde <em>sundial</em> trifft dort 0 Token. Das Wörterbuch von <code>karman-nachlass</code> und <code>waefler-prim</code> hat Kopfwörter ohne Zitate. Die Lieferquote der goldenen Anfragen auf dem Weg der Chat-Oberfläche ist in diesem Messlauf nicht erhoben (<strong>Lücke G9</strong>).</p>
+<p><code>results.json#P5</code> · <code>#P2</code> · <code>#P4</code> · <code>#P9</code></p>
+</div>
+</div>
+<p>Bestand der fünf genannten Sammlungen (<code>#P6</code>): <code>eulerOO</code> <code>search_ready</code>, 84 Dokumente, 6 684 Seiten; <code>enestroem</code> <code>not_ready</code> bei 766 Dokumenten und 27 047 Seiten; <code>kepler-prim</code> <code>partial</code>, 26 Dokumente, 14 277 Seiten; <code>karman-nachlass</code> <code>search_ready</code>, 1 066 Dokumente, 38 197 Seiten; <code>waefler-prim</code> <code>partial</code>, 9 Dokumente, 861 Seiten. Von 41 Manifesten sind 16 <code>search_ready</code>, 4 <code>partial</code> und 21 <code>not_ready</code>.</p>
+</section>
+<section id="sec-schluss" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="sec-schluss"><span class="header-section-number">14</span> Schluss</h2>
+<p>Der Gelehrte aus <a href="#sec-neugier" class="quarto-xref">Kapitel&nbsp;1</a> hat am Ende des Tages dieselbe Frage, die er am Morgen hatte. Geändert hat sich, dass er nicht dort abgebrochen hat, wo die Zeit den Horizont schloss. Er hat die erschlossenen Bände der Kepler-Gesamtausgabe nach dem Lemma <em>vis</em> durchsucht – 108 Formen, 1 601 Token in lateinischen Sätzen, 52 ms – und nicht nur einen Band. Er hat das Wörterbuch nach den Bedeutungen von <em>anima</em> und <em>vis</em> gefragt und die Bedeutung von 1596, die von 1609 und Keplers eigene Anmerkung von 1621 mit ihren Fundorten erhalten. Jeder dieser Schritte hat seine Spur; jeder ist nachprüfbar; keiner behauptet etwas ohne Fundort.</p>
+<p>Die Schritte stehen in seinem Notebook, jeder als Block mit Frage, Partitur, Ergebnis, Urteil und Herkunft. Er kann das Notebook einer Kollegin geben, die dieselben Sammlungen über eine Verknüpfung liest, einen seiner Blöcke neu laufen lässt und ein Ergebnis in ihre eigene Arbeit übernimmt, mit der Angabe, woher es kam. Er kann das Notebook zu einem Aufsatz setzen, in dem jede Zahl auf den Block verweist, der sie erzeugt hat. Die Partituren, die er dabei spielt, sind Dokumente, die andere lesen, verbessern und weitergeben können.</p>
+<p>Das Urteil ist seines geblieben. Die Fachkräfte haben Material vorbereitet; der Gelehrte hat entschieden. Wo die Plattform an ihre Grenze kam, hat sie die Grenze benannt, und die Frage hat neue Fragen hervorgebracht: ob Keplers Übergang von der Seele zur Kraft in seinen Briefen früher erscheint als im Druck, und welche Aussagen über die Ursache der Planetenbewegung er in welchem Jahr vertrat. Das Verfahren hat sich nicht geändert. Die Quellen werden gelesen, nicht paraphrasiert; Argumente werden rekonstruiert; Hypothesen werden an Evidenz gemessen, nicht an Plausibilität; Grenzen werden benannt.</p>
+</section>
+<section id="lücken" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="lücken">Lücken</h2>
+<ul>
+<li><strong>G1</strong> Rezeption der Regularitätstheorie (Eintrag der Stanford Encyclopedia of Philosophy, Weiterentwicklungen durch Baumgartner und Falk): nicht in der Wissensbasis.</li>
+<li><strong>G2</strong> Laufende Instanz für Beratung und Projektleitung.</li>
+<li><strong>G3</strong> Register der Behauptungen eines Textes mit Evidenzstufe, Schlussform und Urteil.</li>
+<li><strong>G4</strong> Scandaten und Projektakte des Pantheon: nicht in der Wissensbasis.</li>
+<li><strong>G5</strong> Laufende Instanz des Lernens im Verbund (eine Fachkraft lernt von einer anderen).</li>
+<li><strong>G6</strong> Europäische Rechtstexte (DSGVO, KI-Verordnung) in der Wissensbasis.</li>
+<li><strong>G7</strong> Vollständiges Verzeichnis der Anschlüsse an außenliegende Datenbestände.</li>
+<li><strong>G8</strong> Sekundärquelle zu Eulers Gutachten für die Potsdamer Wasserkünste.</li>
+<li><strong>G9</strong> Lieferquote der goldenen Anfragen aus einem datierten Protokoll des Chat-Weges.</li>
+<li><strong>G10</strong> Typregister für Aussagen (keine Spalte für den Typ in <code>statements</code>).</li>
+<li><strong>G11</strong> Laufende Instanz der Doxographie (Autor, Zeit, Aussage).</li>
+<li><strong>G12</strong> Prüfung der Konsistenz und Kohärenz über die Notebooks verschiedener Peers und Prüfung des Sinns eines Terminus über Notebooks hinweg.</li>
+<li><strong>G13</strong> Öffentliches Repositorium und Katalog der Partituren.</li>
+</ul>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Literatur</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-grasshoff1998a" class="csl-entry" role="listitem">
+Graßhoff, Gerd. 1998. <span>„Discovery of the <span>Urea Cycle</span>: <span>Computer Models</span> of <span>Scientific Discovery</span>“</span>. In <em>Computer <span>Simulations</span> in <span>Science</span> and <span>Technology Studies</span></em>, herausgegeben von Petra Ahrweiler und Nigel Gilbert. Springer.
+</div>
+<div id="ref-grasshoff1999a" class="csl-entry" role="listitem">
+Graßhoff, Gerd. 1999. <em>Astronomia Nova: <span>Keplers</span> Entdeckung</em>. Bern Studies in the History; Philosophy of Science.
+</div>
+<div id="ref-grasshoff2026famulusnotebook" class="csl-entry" role="listitem">
+Graßhoff, Gerd. 2026. <span>„Famulus Notebook: The Notebook as the Principal Medium of Scholarly Querying, Checking, and Development, Federated Across Machines“</span>. <em>arXiv preprint</em>.
+</div>
+<div id="ref-grashoff_gerd_decoding_2014" class="csl-entry" role="listitem">
+Graßhoff, Gerd, und Berndt, Christian. 2014. <span>„Decoding the <span>Pantheon Columns</span>“</span>. <em>Architectural Histories</em> 2 (1): 1–14. https://doi.org/<a href="http://doi.org/10.5334/ah.bl">http://doi.org/10.5334/ah.bl</a>.
+</div>
+<div id="ref-grasshoff2001" class="csl-entry" role="listitem">
+Graßhoff, Gerd, Robert Casties, und Kärin Nickelsen. 2001. <em>Zur <span>Theorie</span> des <span>Experiments</span>. <span>Untersuchungen</span> am <span>Beispiel</span> der <span>Entdeckung</span> des <span>Harnstoffzyklus</span></em>. Bern Studies in the History; Philosophy of Science.
+</div>
+<div id="ref-grasshoff2001b" class="csl-entry" role="listitem">
+Graßhoff, Gerd, und Michael May. 2001. <span>„Causal <span>Regularities</span>“</span>. In <em>Current <span>Issues</span> in <span>Causation</span></em>, herausgegeben von Wolfgang Spohn, Marion Ledwig, und Michael Esfeld. Mentis Verlag.
+</div>
+<div id="ref-Graßhoff2003a" class="csl-entry" role="listitem">
+Graßhoff, Gerd, und Michael May. 2003. <span>„Hans <span>Krebs’</span> and <span>Kurt</span> <span>Henseleit’s</span> Laboratory Notebooks and Their Discovery of the <span>Urea</span> Cycle - Reconstructed with Computer Models“</span>. In <em>Reworking the Bench. Research Notebooks in the History of Science</em>, herausgegeben von Jürgen Renn Frederic L. Holmes Hans-Jörg Rheinberger, Volume 7. Kluwer Academic Publishers.
+</div>
+<div id="ref-nickelsen2009" class="csl-entry" role="listitem">
+Nickelsen, Kärin, und Gerd Graßhoff. 2009. <span>„Concepts from the <span>Bench</span>: <span>Hans Krebs</span>, <span>Kurt Henseleit</span> and the <span>Urea Cycle</span>“</span>. In <em>Going <span>Amiss</span> in <span>Experimental Research</span></em>. Boston Studies in the Philosophy of Science. Springer.
+</div>
+<div id="ref-wittgensteinPU2022" class="csl-entry" role="listitem">
+Wittgenstein, Ludwig. 2022. <em>Philosophische Untersuchungen</em>. 11. Aufl. Suhrkamp.
+</div>
+<div id="ref-wittgensteinUG2023" class="csl-entry" role="listitem">
+Wittgenstein, Ludwig. 2023. <em><span>Ü</span>ber Gewi<span>ß</span>heit</em>. 16. Aufl. Suhrkamp.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
